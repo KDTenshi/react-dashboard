@@ -1,0 +1,47 @@
+@mixin HEADING_1() {
+  font-size: 50px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+}
+
+@mixin HEADING_2() {
+  font-size: 35px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+}
+
+@mixin HEADING_3() {
+  font-size: 25px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+}
+
+@mixin HEADING_4() {
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+}
+
+@mixin BODY_1() {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+}
+
+@mixin BODY_2() {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+}
+
+@mixin BODY_3() {
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+}
+
+@mixin BODY_4() {
+  font-size: 12px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+}
