@@ -2,6 +2,7 @@
 @import "../../../shared/style/mixins";
 
 .SideBar {
+  flex-shrink: 0;
   width: 20vw;
   height: 100vh;
   background: c.$WHITE;
@@ -9,6 +10,7 @@
 }
 
 .Logo {
+  height: 85px;
   background: c.$WHITE;
   border-bottom: 1px solid c.$GRAY;
   padding: 15px 25px;
