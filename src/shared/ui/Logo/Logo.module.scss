@@ -2,7 +2,7 @@
 @import "../../style/mixins";
 
 .Logo {
-  @include HEADING_2();
+  @include HEADING_3();
 
   color: c.$BLACK;
   user-select: none;

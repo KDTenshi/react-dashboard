@@ -8,10 +8,10 @@ interface LogoProps {
 
 const Logo: FC<LogoProps> = ({ size = "big" }) => {
   return (
-    <h2 className={style.Logo}>
+    <h3 className={style.Logo}>
       {size === "big" && "PDashboard"}
       {size === "small" && "PD"}
-    </h2>
+    </h3>
   );
 };
 
