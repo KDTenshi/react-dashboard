@@ -4,6 +4,12 @@
   height: 100vh;
   background: #f8f9fa;
   border-right: 1px solid #adb5bd;
+  animation: Show 0.125s linear;
+}
+
+.Hidden {
+  animation: Hide 0.125s linear;
+  margin-left: -20vw;
 }
 
 .Logo {
@@ -14,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .Button {
@@ -30,6 +37,17 @@
 }
 .Button:hover {
   color: #212529;
+}
+
+.Show {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateX(100%) translateY(100%);
+  padding: 5px;
+  border: 1px solid #adb5bd;
+  border-top: 0;
+  border-radius: 0 0 10px 0;
 }
 
 .Nav {
@@ -67,4 +85,21 @@
   color: #495057;
   text-align: center;
   padding: 25px 50px;
+}
+
+@keyframes Hide {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: -20vw;
+  }
+}
+@keyframes Show {
+  from {
+    margin-left: -20vw;
+  }
+  to {
+    margin-left: 0;
+  }
 }/*# sourceMappingURL=SideBar.module.css.map */

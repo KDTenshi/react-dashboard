@@ -1,17 +1,23 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 
 import style from "./SideBar.module.css";
 import { Logo } from "../../../shared/ui";
 
 const SideBar: FC = () => {
+  const [isShown, setIsShown] = useState(true);
+
   return (
-    <div className={style.SideBar}>
+    <div className={isShown ? style.SideBar : [style.SideBar, style.Hidden].join(" ")}>
       <div className={style.Logo}>
         <Logo />
-        <button className={style.Button}>
+        <button className={style.Button} onClick={() => setIsShown(false)}>
           <span className="material-symbols-outlined">keyboard_double_arrow_left</span>
-          {/* <span className="material-symbols-outlined">keyboard_double_arrow_right</span> */}
         </button>
+        {!isShown && (
+          <button className={[style.Button, style.Show].join(" ")} onClick={() => setIsShown(true)}>
+            <span className="material-symbols-outlined">keyboard_double_arrow_right</span>
+          </button>
+        )}
       </div>
       <nav className={style.Nav}>
         <a href="/" className={style.Link}>
