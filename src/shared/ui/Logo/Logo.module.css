@@ -1,0 +1,12 @@
+.Logo {
+  font-size: 35px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: #212529;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.Logo::first-letter {
+  color: #dd2c2f;
+}/*# sourceMappingURL=Logo.module.css.map */

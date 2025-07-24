@@ -1,0 +1,13 @@
+@use "../../style/colors" as c;
+@import "../../style/mixins";
+
+.Logo {
+  @include HEADING_2();
+
+  color: c.$BLACK;
+  user-select: none;
+
+  &::first-letter {
+    color: c.$RED;
+  }
+}
