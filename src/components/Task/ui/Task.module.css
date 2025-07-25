@@ -1,0 +1,39 @@
+.Task {
+  width: 100%;
+  background: #f8f9fa;
+  border-radius: 10px;
+  position: relative;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #495057;
+  transition: all 0.25s;
+}
+.Button:hover {
+  color: #212529;
+}
+
+.Title {
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #212529;
+}
+
+.Desc {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+}/*# sourceMappingURL=Task.module.css.map */

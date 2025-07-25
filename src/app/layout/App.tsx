@@ -2,6 +2,7 @@ import type { FC } from "react";
 import "../style/App.css";
 import { Header } from "../../components/Header";
 import { SideBar } from "../../components/SideBar";
+import { Board } from "../../components/Board";
 
 const App: FC = () => {
   return (
@@ -9,6 +10,7 @@ const App: FC = () => {
       <SideBar />
       <div className="Body">
         <Header />
+        <Board />
       </div>
     </div>
   );

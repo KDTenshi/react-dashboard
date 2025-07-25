@@ -1,0 +1,41 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Task {
+  width: 100%;
+  background: c.$WHITE;
+  border-radius: 10px;
+  position: relative;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  cursor: pointer;
+  color: c.$DARK_GRAY;
+  transition: all 0.25s;
+
+  &:hover {
+    color: c.$BLACK;
+  }
+}
+
+.Title {
+  @include HEADING_4();
+
+  color: c.$BLACK;
+}
+
+.Desc {
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+}

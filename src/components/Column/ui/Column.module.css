@@ -1,0 +1,84 @@
+.Column {
+  display: flex;
+  flex-direction: column;
+  background: #dee2e6;
+  width: 100%;
+  border-radius: 10px;
+  padding: 15px 25px;
+}
+
+.Todo {
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #212529;
+  border-bottom: 2px solid #e66063;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.Todo span {
+  background: #e66063;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.Progress {
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #212529;
+  border-bottom: 2px solid #48cae4;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.Progress span {
+  background: #48cae4;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.Done {
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #212529;
+  border-bottom: 2px solid #6ede8a;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.Done span {
+  background: #6ede8a;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.List {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px 10px;
+}
+
+.Empty {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+  text-align: center;
+}/*# sourceMappingURL=Column.module.css.map */

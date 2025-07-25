@@ -2,6 +2,7 @@
 @import "../../../shared/style/mixins";
 
 .Header {
+  flex-shrink: 0;
   width: 100%;
   height: 85px;
   background: c.$WHITE;
