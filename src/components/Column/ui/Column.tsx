@@ -33,13 +33,6 @@ const Column: FC<ColumnProps> = ({ type }) => {
       <div className={style.List}>
         {/* <p className={style.Empty}>No tasks here</p> */}
         <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
       </div>
     </div>
   );
