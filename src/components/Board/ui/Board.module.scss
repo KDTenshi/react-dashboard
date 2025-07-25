@@ -27,7 +27,7 @@
   color: c.$BLACK;
 }
 
-.Edit {
+.Button {
   padding: 10px;
   border: 0;
   outline: 0;
@@ -44,6 +44,20 @@
   & span {
     font-size: 30px;
   }
+}
+
+.Edit {
+  width: 100%;
+}
+
+.Input {
+  @include HEADING_1();
+
+  width: 100%;
+  color: c.$BLACK;
+  border: 0;
+  outline: 0;
+  background: c.$WHITE;
 }
 
 .Filters {

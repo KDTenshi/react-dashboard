@@ -25,7 +25,7 @@
   color: #212529;
 }
 
-.Edit {
+.Button {
   padding: 10px;
   border: 0;
   outline: 0;
@@ -35,11 +35,26 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.Edit:hover {
+.Button:hover {
   background: #dee2e6;
 }
-.Edit span {
+.Button span {
   font-size: 30px;
+}
+
+.Edit {
+  width: 100%;
+}
+
+.Input {
+  font-size: 50px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  width: 100%;
+  color: #212529;
+  border: 0;
+  outline: 0;
+  background: #f8f9fa;
 }
 
 .Filters {
