@@ -3,6 +3,7 @@ import "../style/App.css";
 import { Header } from "../../components/Header";
 import { SideBar } from "../../components/SideBar";
 import { Board } from "../../components/Board";
+import { TaskInfo } from "../../components/TaskInfo";
 
 const App: FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: FC = () => {
         <Header />
         <Board />
       </div>
+      <TaskInfo />
     </div>
   );
 };

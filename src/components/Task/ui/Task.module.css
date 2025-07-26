@@ -9,21 +9,6 @@
   gap: 10px;
 }
 
-.Button {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  cursor: pointer;
-  color: #495057;
-  transition: all 0.25s;
-}
-.Button:hover {
-  color: #212529;
-}
-
 .Title {
   font-size: 20px;
   font-family: "Space Grotesk", sans-serif;
