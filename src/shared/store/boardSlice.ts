@@ -69,6 +69,7 @@ export const boardSlice = createSlice({
         date: Date.now(),
         notes: [],
         column: "todo",
+        priority: "low",
       };
 
       state.columns.todo.tasks = [newTask, ...state.columns.todo.tasks];

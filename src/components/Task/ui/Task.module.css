@@ -1,24 +1,181 @@
+.Wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(73, 80, 87, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
 .Task {
-  width: 100%;
+  width: 50vw;
   background: #f8f9fa;
-  border-radius: 10px;
-  position: relative;
-  padding: 15px 10px;
+  border-radius: 25px;
+  padding: 25px 50px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+}
+
+.Heading {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
 }
 
 .Title {
-  font-size: 20px;
+  font-size: 25px;
   font-family: "Space Grotesk", sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   color: #212529;
 }
 
-.Desc {
+.Edit {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.25s;
+  padding: 5px;
+  border-radius: 5px;
+}
+.Edit:hover {
+  background: #dee2e6;
+  color: #212529;
+}
+
+.Divider {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.Label {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+}
+
+.Description {
   font-size: 16px;
   font-family: "Mulish", sans-serif;
   font-weight: 400;
   color: #495057;
+  padding: 0 10px;
+}
+
+.Priorities {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 10px;
+  gap: 10px;
+}
+
+.Low {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #212529;
+  background: #f8f9fa;
+  border: 1px solid #2dc653;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+.Low.Active {
+  background: rgba(45, 198, 83, 0.5);
+}
+.Low:hover {
+  background: #2dc653;
+}
+
+.Moderate {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #212529;
+  background: #f8f9fa;
+  border: 1px solid #ffd819;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+.Moderate.Active {
+  background: rgba(255, 216, 25, 0.5);
+}
+.Moderate:hover {
+  background: #ffd819;
+}
+
+.High {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #212529;
+  background: #f8f9fa;
+  border: 1px solid #dd2c2f;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+.High.Active {
+  background: rgba(221, 44, 47, 0.5);
+}
+.High:hover {
+  background: #dd2c2f;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 25px;
+}
+
+.Confirm {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  background: #495057;
+  color: #dee2e6;
+}
+.Confirm:hover {
+  box-shadow: 0 0 10px #495057;
+}
+
+.Cancel {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: #495057;
+  background: #dee2e6;
+}
+.Cancel:hover {
+  box-shadow: 0 0 10px #adb5bd;
 }/*# sourceMappingURL=Task.module.css.map */

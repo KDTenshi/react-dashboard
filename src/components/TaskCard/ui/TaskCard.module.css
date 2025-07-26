@@ -1,0 +1,74 @@
+.Card {
+  width: 100%;
+  padding: 25px 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Card:hover {
+  box-shadow: 0 0 15px 0 #adb5bd;
+}
+
+.Title {
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #212529;
+}
+
+.Info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Low {
+  font-size: 12px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  align-self: flex-end;
+  background: rgba(45, 198, 83, 0.5);
+  padding: 5px 10px;
+  color: #212529;
+  border-radius: 10px;
+}
+
+.Moderate {
+  font-size: 12px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  align-self: flex-end;
+  background: rgba(255, 216, 25, 0.5);
+  padding: 5px 10px;
+  color: #212529;
+  border-radius: 10px;
+}
+
+.High {
+  font-size: 12px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  align-self: flex-end;
+  background: rgba(221, 44, 47, 0.5);
+  padding: 5px 10px;
+  color: #212529;
+  border-radius: 10px;
+}
+
+.Date {
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
+  color: #495057;
+}/*# sourceMappingURL=TaskCard.module.css.map */

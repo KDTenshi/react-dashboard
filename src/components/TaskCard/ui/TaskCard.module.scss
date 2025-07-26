@@ -1,0 +1,63 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Card {
+  width: 100%;
+  padding: 25px 15px;
+  background: c.$WHITE;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &:hover {
+    box-shadow: 0 0 15px 0 c.$GRAY;
+  }
+}
+
+.Title {
+  @include HEADING_4();
+
+  color: c.$BLACK;
+}
+
+.Info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin Priority($color) {
+  @include BODY_4();
+
+  text-transform: uppercase;
+  align-self: flex-end;
+  background: rgba($color: $color, $alpha: 0.5);
+  padding: 5px 10px;
+  color: c.$BLACK;
+  border-radius: 10px;
+}
+
+.Low {
+  @include Priority(c.$GREEN);
+}
+
+.Moderate {
+  @include Priority(c.$YELLOW);
+}
+
+.High {
+  @include Priority(c.$RED);
+}
+
+.Date {
+  @include BODY_3();
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
+  color: c.$DARK_GRAY;
+}

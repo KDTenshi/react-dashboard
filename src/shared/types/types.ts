@@ -1,4 +1,5 @@
 export type TColumnType = "todo" | "inProgress" | "done";
+export type TTaskPriority = "high" | "moderate" | "low";
 
 export type TTask = {
   id: string;
@@ -7,6 +8,7 @@ export type TTask = {
   date: number;
   notes: string[];
   column: TColumnType;
+  priority: TTaskPriority;
 };
 
 export type TColumn = {

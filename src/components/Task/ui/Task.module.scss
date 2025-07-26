@@ -1,25 +1,154 @@
 @use "../../../shared/style/colors" as c;
 @import "../../../shared/style/mixins";
 
+.Wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color: c.$DARK_GRAY, $alpha: 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
 .Task {
-  width: 100%;
+  width: 50vw;
+  // height: 75vh;
   background: c.$WHITE;
-  border-radius: 10px;
-  position: relative;
-  padding: 15px 10px;
+  border-radius: 25px;
+  padding: 25px 50px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+}
+
+.Heading {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
 }
 
 .Title {
-  @include HEADING_4();
+  @include HEADING_3();
 
   color: c.$BLACK;
 }
 
-.Desc {
+.Edit {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: c.$DARK_GRAY;
+  cursor: pointer;
+  transition: all 0.25s;
+  padding: 5px;
+  border-radius: 5px;
+
+  &:hover {
+    background: c.$LIGHT_GRAY;
+    color: c.$BLACK;
+  }
+}
+
+.Divider {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.Label {
+  @include BODY_1();
+
+  color: c.$DARK_GRAY;
+}
+
+.Description {
   @include BODY_2();
 
   color: c.$DARK_GRAY;
+  padding: 0 10px;
+}
+
+.Priorities {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 10px;
+  gap: 10px;
+}
+
+@mixin Priority($color) {
+  @include BODY_2();
+
+  color: c.$BLACK;
+  background: c.$WHITE;
+  border: 1px solid $color;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+
+  &.Active {
+    background: rgba($color: $color, $alpha: 0.5);
+  }
+
+  &:hover {
+    background: $color;
+  }
+}
+
+.Low {
+  @include Priority(c.$GREEN);
+}
+
+.Moderate {
+  @include Priority(c.$YELLOW);
+}
+
+.High {
+  @include Priority(c.$RED);
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 25px;
+}
+
+@mixin Button {
+  @include BODY_1();
+
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.Confirm {
+  @include Button();
+
+  background: c.$DARK_GRAY;
+  color: c.$LIGHT_GRAY;
+
+  &:hover {
+    box-shadow: 0 0 10px c.$DARK_GRAY;
+  }
+}
+
+.Cancel {
+  @include Button();
+
+  color: c.$DARK_GRAY;
+  background: c.$LIGHT_GRAY;
+
+  &:hover {
+    box-shadow: 0 0 10px c.$GRAY;
+  }
 }
