@@ -3,7 +3,7 @@
 
 .Idle {
   display: none;
-  margin-right: -1000vw;
+  margin-right: -100vw;
 }
 
 .Hidden {
@@ -13,7 +13,7 @@
   height: 100vh;
   align-items: center;
   justify-content: end;
-  margin-right: -1000vw;
+  margin-right: -100vw;
   animation: Hide 0.25s linear;
 }
 
@@ -26,6 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: end;
+  margin-right: 0;
   animation: Show 0.25s linear;
 }
 
@@ -161,7 +162,7 @@
 
 @keyframes Show {
   from {
-    margin-right: -100%;
+    margin-right: -100vw;
   }
 
   to {
@@ -175,6 +176,6 @@
   }
 
   to {
-    margin-right: -100%;
+    margin-right: -100vw;
   }
 }

@@ -19,7 +19,7 @@ const Task: FC<TaskProps> = ({ task }) => {
   return (
     <div className={style.Task} onClick={handleTaskClick}>
       <h4 className={style.Title}>{task.title}</h4>
-      <p className={style.Desc}>{task.description}</p>
+      {task.description !== "No description" && <p className={style.Desc}>{task.description}</p>}
     </div>
   );
 };

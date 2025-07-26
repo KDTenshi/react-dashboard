@@ -11,6 +11,38 @@
   min-height: 50vh;
 }
 
+.Button {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  color: c.$BLACK;
+  transition: all 0.25s;
+
+  &:hover {
+    color: c.$LIGHT_RED;
+  }
+}
+
+.Add {
+  width: 100%;
+  background: c.$WHITE;
+  padding: 15px 10px;
+  border-radius: 10px;
+}
+
+.Input {
+  @include HEADING_4();
+
+  color: c.$BLACK;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: c.$WHITE;
+}
+
 @mixin Title($color) {
   @include HEADING_4();
 
@@ -22,7 +54,7 @@
   justify-content: start;
   gap: 10px;
 
-  & span {
+  & .Dot {
     background: $color;
     width: 10px;
     height: 10px;
@@ -33,6 +65,8 @@
 
 .Todo {
   @include Title(c.$LIGHT_RED);
+
+  position: relative;
 }
 
 .Progress {

@@ -10,22 +10,11 @@ const initialState: BoardState = {
   columns: {
     todo: {
       title: "todo",
-      tasks: [
-        { id: "001", title: "Task 1", description: "Task 1 description", notes: [], date: Date.now(), column: "todo" },
-      ],
+      tasks: [],
     },
     inProgress: {
       title: "inProgress",
-      tasks: [
-        {
-          id: "002",
-          title: "Task 2",
-          description: "Task 2 description",
-          notes: [],
-          date: Date.now(),
-          column: "inProgress",
-        },
-      ],
+      tasks: [],
     },
     done: {
       title: "done",
@@ -70,7 +59,30 @@ export const boardSlice = createSlice({
         state.selectedTask = task;
       }
     },
+    addTask: (state, action: PayloadAction<{ title: string }>) => {
+      const { title } = action.payload;
+
+      const newTask: TTask = {
+        id: `${Date.now()}`,
+        title,
+        description: "No description",
+        date: Date.now(),
+        notes: [],
+        column: "todo",
+      };
+
+      state.columns.todo.tasks = [newTask, ...state.columns.todo.tasks];
+    },
+    deleteTask: (state, action: PayloadAction<{ selectedTask: TTask }>) => {
+      const { selectedTask } = action.payload;
+
+      const taskColumn = state.columns[selectedTask.column];
+
+      taskColumn.tasks = taskColumn.tasks.filter((task) => task.id !== selectedTask.id);
+      state.selectedTask = null;
+    },
   },
 });
 
-export const { setSelectedTask, unsetSelectedTask, changeTaskTitle, changeTaskDescription } = boardSlice.actions;
+export const { setSelectedTask, unsetSelectedTask, changeTaskTitle, changeTaskDescription, addTask, deleteTask } =
+  boardSlice.actions;

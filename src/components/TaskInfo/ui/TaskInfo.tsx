@@ -2,7 +2,12 @@ import React, { useEffect, useState, type FC } from "react";
 
 import style from "./TaskInfo.module.css";
 import { useAppDispatch, useAppSelector } from "../../../app/store/appStore";
-import { changeTaskDescription, changeTaskTitle, unsetSelectedTask } from "../../../shared/store/boardSlice";
+import {
+  changeTaskDescription,
+  changeTaskTitle,
+  deleteTask,
+  unsetSelectedTask,
+} from "../../../shared/store/boardSlice";
 
 const TaskInfo: FC = () => {
   const [isTitleEdit, setIsTitleEdit] = useState(false);
@@ -82,10 +87,17 @@ const TaskInfo: FC = () => {
     setIsDescEdit(false);
   };
 
+  const handleDeleteTask = () => {
+    if (!selectedTask) return;
+
+    dispatch(deleteTask({ selectedTask }));
+    setClassName(style.Hidden);
+  };
+
   return (
     <div className={className} onClick={handleClick}>
       <div className={style.Info}>
-        <button className={style.Delete}>
+        <button className={style.Delete} onClick={handleDeleteTask}>
           <span className="material-symbols-outlined">delete</span>Delete
         </button>
         {selectedTask && (
