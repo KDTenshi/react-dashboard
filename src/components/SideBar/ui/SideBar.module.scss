@@ -7,10 +7,10 @@
   height: 100vh;
   background: c.$WHITE;
   border-right: 1px solid c.$GRAY;
-  animation: Show 0.125s linear;
 }
 
 .Shown {
+  animation: Show 0.125s linear;
 }
 
 .Hidden {

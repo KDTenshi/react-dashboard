@@ -2,8 +2,8 @@ import type { FC } from "react";
 
 import style from "./Column.module.css";
 import { Task } from "../../Task";
-
-type TColumnType = "todo" | "inProgress" | "done";
+import type { TColumnType } from "../../../shared/types/types";
+import { useAppSelector } from "../../../app/store/appStore";
 
 interface ColumnProps {
   type: TColumnType;
@@ -24,6 +24,8 @@ const columnTitles: TColumnData = {
 };
 
 const Column: FC<ColumnProps> = ({ type }) => {
+  const column = useAppSelector((state) => state.board.columns[type]);
+
   return (
     <div className={style.Column}>
       <h4 className={columnTitleStyles[type]}>
@@ -31,8 +33,10 @@ const Column: FC<ColumnProps> = ({ type }) => {
         {columnTitles[type]}
       </h4>
       <div className={style.List}>
-        {/* <p className={style.Empty}>No tasks here</p> */}
-        <Task />
+        {column.tasks.length === 0 && <p className={style.Empty}>No tasks here</p>}
+        {column.tasks.map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
       </div>
     </div>
   );

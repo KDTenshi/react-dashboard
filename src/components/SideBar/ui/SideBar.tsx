@@ -4,17 +4,24 @@ import style from "./SideBar.module.css";
 import { Logo } from "../../../shared/ui";
 
 const SideBar: FC = () => {
-  const [isShown, setIsShown] = useState(true);
+  const [status, setStatus] = useState<"shown" | "hidden" | null>(null);
+
+  const className =
+    status === "shown"
+      ? [style.SideBar, style.Shown].join(" ")
+      : status === "hidden"
+      ? [style.SideBar, style.Hidden].join(" ")
+      : style.SideBar;
 
   return (
-    <div className={isShown ? style.SideBar : [style.SideBar, style.Hidden].join(" ")}>
+    <div className={className}>
       <div className={style.Logo}>
         <Logo />
-        <button className={style.Button} onClick={() => setIsShown(false)}>
+        <button className={style.Button} onClick={() => setStatus("hidden")}>
           <span className="material-symbols-outlined">keyboard_double_arrow_left</span>
         </button>
-        {!isShown && (
-          <button className={[style.Button, style.Show].join(" ")} onClick={() => setIsShown(true)}>
+        {status === "hidden" && (
+          <button className={[style.Button, style.Show].join(" ")} onClick={() => setStatus("shown")}>
             <span className="material-symbols-outlined">keyboard_double_arrow_right</span>
           </button>
         )}

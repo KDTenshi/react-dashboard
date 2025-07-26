@@ -1,16 +1,19 @@
 @use "../../../shared/style/colors" as c;
 @import "../../../shared/style/mixins";
 
+.Idle {
+  display: none;
+  margin-right: -1000vw;
+}
+
 .Hidden {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
+  width: 100vw;
+  height: 100vh;
   align-items: center;
   justify-content: end;
-  margin-right: 100%;
+  margin-right: -1000vw;
   animation: Hide 0.25s linear;
 }
 
@@ -74,6 +77,7 @@
 
   color: c.$DARK_GRAY;
   width: 100%;
+  overflow-y: hidden;
   background: c.$WHITE;
   border: 0;
   outline: 0;
