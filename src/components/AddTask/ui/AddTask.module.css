@@ -206,4 +206,36 @@
 }
 .Cancel:hover {
   box-shadow: 0 0 10px #adb5bd;
+}
+
+.Deadline {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.Date {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+  background: #dee2e6;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.Calendar {
+  border: 0;
+  outline: 0;
+  background: #f8f9fa;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.Calendar:hover {
+  background: #dee2e6;
+  color: #212529;
 }/*# sourceMappingURL=AddTask.module.css.map */

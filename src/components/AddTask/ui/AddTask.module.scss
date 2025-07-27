@@ -176,3 +176,35 @@
     box-shadow: 0 0 10px c.$GRAY;
   }
 }
+
+.Deadline {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.Date {
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+  background: c.$LIGHT_GRAY;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.Calendar {
+  border: 0;
+  outline: 0;
+  background: c.$WHITE;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: c.$DARK_GRAY;
+  cursor: pointer;
+  transition: all 0.25s;
+
+  &:hover {
+    background: c.$LIGHT_GRAY;
+    color: c.$BLACK;
+  }
+}

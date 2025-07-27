@@ -4,6 +4,7 @@ import style from "./AddTask.module.css";
 import type { TTaskPriority } from "../../../shared/types/types";
 import { useAppDispatch } from "../../../app/store/appStore";
 import { addTask, setIsAdding } from "../../../shared/store/boardSlice";
+import { DateTimePicker } from "../../DateTimePicker";
 
 const AddTask: FC = () => {
   const dispatch = useAppDispatch();
@@ -11,8 +12,10 @@ const AddTask: FC = () => {
   const [titleValue, setTitleValue] = useState("");
   const [descValue, setDescValue] = useState("");
   const [priority, setPriority] = useState<TTaskPriority>("low");
+  const [deadline, setDeadline] = useState(Date.now());
 
   const [isWarning, setIsWarning] = useState(false);
+  const [isPickerShown, setIsPickerShown] = useState(false);
 
   useEffect(() => {
     if (isWarning) {
@@ -37,7 +40,7 @@ const AddTask: FC = () => {
     const description = descValue.trim();
 
     if (title) {
-      dispatch(addTask({ title, description, priority }));
+      dispatch(addTask({ title, description, priority, deadline }));
       clearAdding();
     } else {
       setIsWarning(true);
@@ -52,6 +55,9 @@ const AddTask: FC = () => {
 
   return (
     <div className={style.Wrapper} onClick={handleClick}>
+      {isPickerShown && (
+        <DateTimePicker setIsShown={setIsPickerShown} timestamp={deadline} setTimestamp={setDeadline} />
+      )}
       <div className={style.Add}>
         <h2 className={style.Title}>Add new task</h2>
         <form className={style.Form} onSubmit={handleSubmit}>
@@ -95,6 +101,13 @@ const AddTask: FC = () => {
               onClick={() => setPriority("high")}
             >
               High
+            </button>
+          </div>
+          <p className={style.Label}>Task deadline</p>
+          <div className={style.Deadline}>
+            <p className={style.Date}>{new Date(deadline).toLocaleString()}</p>
+            <button className={style.Calendar} type="button" onClick={() => setIsPickerShown(true)}>
+              <span className="material-symbols-outlined">calendar_clock</span>
             </button>
           </div>
           <div className={style.Buttons}>

@@ -28,7 +28,7 @@ const TaskCard: FC<TaskCardProps> = ({ task }) => {
       <div className={style.Info}>
         <p className={style.Date}>
           <span className="material-symbols-outlined">calendar_clock</span>
-          10.08
+          {new Date(task.deadline).toDateString()}
         </p>
         <p className={priorityStyles[task.priority]}>{task.priority}</p>
       </div>

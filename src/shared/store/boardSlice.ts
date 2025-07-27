@@ -40,15 +40,18 @@ export const boardSlice = createSlice({
     unsetSelectedTask: (state) => {
       state.selectedTask = null;
     },
-    addTask: (state, action: PayloadAction<{ title: string; description: string; priority: TTaskPriority }>) => {
-      const { title, description, priority } = action.payload;
+    addTask: (
+      state,
+      action: PayloadAction<{ title: string; description: string; priority: TTaskPriority; deadline: number }>
+    ) => {
+      const { title, description, priority, deadline } = action.payload;
 
       const newTask: TTask = {
         id: `${Date.now()}`,
         title,
         description,
         date: Date.now(),
-        notes: [],
+        deadline,
         column: "todo",
         priority,
       };
@@ -65,9 +68,9 @@ export const boardSlice = createSlice({
     },
     editSelectedTask: (
       state,
-      action: PayloadAction<{ title: string; description: string; priority: TTaskPriority }>
+      action: PayloadAction<{ title: string; description: string; priority: TTaskPriority; deadline: number }>
     ) => {
-      const { title, description, priority } = action.payload;
+      const { title, description, priority, deadline } = action.payload;
 
       if (!state.selectedTask) return;
 
@@ -81,6 +84,7 @@ export const boardSlice = createSlice({
       if (task.title !== title) task.title = title;
       if (task.description !== description) task.description = description;
       if (task.priority !== priority) task.priority = priority;
+      if (task.deadline !== deadline) task.deadline = deadline;
 
       state.selectedTask = task;
     },

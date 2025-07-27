@@ -4,6 +4,7 @@ import style from "./Task.module.css";
 import { useAppDispatch } from "../../../app/store/appStore";
 import { deleteTask, editSelectedTask, unsetSelectedTask } from "../../../shared/store/boardSlice";
 import type { TTask } from "../../../shared/types/types";
+import { DateTimePicker } from "../../DateTimePicker";
 
 interface TaskProps {
   task: TTask;
@@ -17,8 +18,10 @@ const Task: FC<TaskProps> = ({ task }) => {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [priority, setPriority] = useState(task.priority);
+  const [deadline, setDeadline] = useState(task.deadline);
 
   const [isWarning, setIsWarning] = useState(false);
+  const [isPickerShown, setIsPickerShown] = useState(false);
 
   useEffect(() => {
     if (isWarning) {
@@ -55,13 +58,16 @@ const Task: FC<TaskProps> = ({ task }) => {
     if (!newTitle) setIsWarning(true);
 
     if (newTitle) {
-      dispatch(editSelectedTask({ title: newTitle, description: newDescription, priority }));
+      dispatch(editSelectedTask({ title: newTitle, description: newDescription, priority, deadline }));
       dispatch(unsetSelectedTask());
     }
   };
 
   return (
     <div className={style.Wrapper} onClick={handleClick}>
+      {isPickerShown && (
+        <DateTimePicker setIsShown={setIsPickerShown} timestamp={deadline} setTimestamp={setDeadline} />
+      )}
       <div className={style.Task}>
         {confirmDelete && (
           <div className={style.Popup} onClick={handlePopupClick}>
@@ -102,9 +108,7 @@ const Task: FC<TaskProps> = ({ task }) => {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="No description..."
         ></textarea>
-        <div className={style.Divider}>
-          <p className={style.Label}>Priority</p>
-        </div>
+        <p className={style.Label}>Priority</p>
         <div className={style.Priorities}>
           <button
             className={priority === "low" ? [style.Low, style.Active].join(" ") : style.Low}
@@ -123,6 +127,13 @@ const Task: FC<TaskProps> = ({ task }) => {
             onClick={() => setPriority("high")}
           >
             High
+          </button>
+        </div>
+        <p className={style.Label}>Deadline</p>
+        <div className={style.Deadline}>
+          <p className={style.Date}>{new Date(deadline).toLocaleString()}</p>
+          <button className={style.Calendar} onClick={() => setIsPickerShown(true)}>
+            <span className="material-symbols-outlined">calendar_clock</span>
           </button>
         </div>
         <div className={style.Buttons}>

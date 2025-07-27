@@ -6,7 +6,7 @@ export type TTask = {
   title: string;
   description: string;
   date: number;
-  notes: string[];
+  deadline: number;
   column: TColumnType;
   priority: TTaskPriority;
 };

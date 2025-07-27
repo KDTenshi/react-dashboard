@@ -1,0 +1,112 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba($color: c.$DARK_GRAY, $alpha: 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.Picker {
+  width: 25vw;
+  background: c.$WHITE;
+  border-radius: 15px;
+  padding: 15px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.Preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Time,
+.Date {
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+  background: c.$LIGHT_GRAY;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.Time {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+
+.Date {
+  width: 100%;
+}
+
+.Heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Button {
+  border: 0;
+  outline: 0;
+  padding: 5px;
+  border-radius: 5px;
+  background: c.$WHITE;
+  cursor: pointer;
+  color: c.$DARK_GRAY;
+  transition: all 0.25s;
+
+  &:hover {
+    background: c.$LIGHT_GRAY;
+    color: c.$BLACK;
+  }
+}
+
+.Days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.WeekDay {
+  @include BODY_3();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: c.$WHITE;
+  color: c.$GRAY;
+  border-left: 1px solid c.$LIGHT_GRAY;
+  border-right: 1px solid c.$LIGHT_GRAY;
+}
+
+.Day {
+  @include BODY_3();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: c.$DARK_GRAY;
+  background: c.$WHITE;
+  cursor: pointer;
+  transition: all 0.25s;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background: c.$LIGHT_GRAY;
+    color: c.$BLACK;
+  }
+}
