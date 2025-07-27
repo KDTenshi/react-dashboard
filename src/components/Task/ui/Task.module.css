@@ -14,10 +14,11 @@
   width: 50vw;
   background: #f8f9fa;
   border-radius: 25px;
-  padding: 25px 50px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  position: relative;
 }
 
 .Heading {
@@ -28,10 +29,45 @@
 }
 
 .Title {
+  width: 100%;
+  position: relative;
+}
+
+.Input {
   font-size: 25px;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 600;
   color: #212529;
+  width: 75%;
+  background: #f8f9fa;
+  border: 0;
+  outline: 0;
+}
+
+.Warning {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #f8f9fa;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(calc(100% + 15px));
+  background: #dd2c2f;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.Warning:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 15px;
+  height: 15px;
+  background: #dd2c2f;
+  transform: rotate(45deg) translateY(-50%);
 }
 
 .Edit {
@@ -67,8 +103,13 @@
   font-size: 16px;
   font-family: "Mulish", sans-serif;
   font-weight: 400;
-  color: #495057;
   padding: 0 10px;
+  height: 15vh;
+  color: #495057;
+  resize: none;
+  background: #f8f9fa;
+  border: 0;
+  outline: 0;
 }
 
 .Priorities {
@@ -178,4 +219,65 @@
 }
 .Cancel:hover {
   box-shadow: 0 0 10px #adb5bd;
+}
+
+.Delete {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: #495057;
+  background: #dee2e6;
+  outline: 0;
+  border: 0;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.Delete:hover {
+  background: #dd2c2f;
+  color: #f8f9fa;
+}
+
+.Popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(73, 80, 87, 0.25);
+  z-index: 10;
+}
+
+.Body {
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.Question {
+  font-size: 25px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  color: #212529;
+}
+
+.Actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }/*# sourceMappingURL=Task.module.css.map */

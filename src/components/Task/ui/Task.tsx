@@ -1,8 +1,8 @@
-import type { FC } from "react";
+import { useEffect, useState, type FC } from "react";
 
 import style from "./Task.module.css";
 import { useAppDispatch } from "../../../app/store/appStore";
-import { unsetSelectedTask } from "../../../shared/store/boardSlice";
+import { deleteTask, editSelectedTask, unsetSelectedTask } from "../../../shared/store/boardSlice";
 import type { TTask } from "../../../shared/types/types";
 
 interface TaskProps {
@@ -12,32 +12,95 @@ interface TaskProps {
 const Task: FC<TaskProps> = ({ task }) => {
   const dispatch = useAppDispatch();
 
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+
+  const [isWarning, setIsWarning] = useState(false);
+
+  useEffect(() => {
+    if (isWarning) {
+      setTimeout(() => {
+        setIsWarning(false);
+      }, 2000);
+    }
+  }, [isWarning]);
+
   const handleClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
 
     if (target.classList.contains(style.Wrapper)) dispatch(unsetSelectedTask());
   };
 
+  const handlePopupClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+
+    if (target.classList.contains(style.Popup)) setConfirmDelete(false);
+  };
+
   const handleButtonClick = () => {
     dispatch(unsetSelectedTask());
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTask({ selectedTask: task }));
+  };
+
+  const handleConfirm = () => {
+    const newTitle = title.trim();
+    const newDescription = description.trim();
+
+    if (!newTitle) setIsWarning(true);
+
+    if (newTitle) {
+      dispatch(editSelectedTask({ title: newTitle, description: newDescription }));
+      dispatch(unsetSelectedTask());
+    }
   };
 
   return (
     <div className={style.Wrapper} onClick={handleClick}>
       <div className={style.Task}>
+        {confirmDelete && (
+          <div className={style.Popup} onClick={handlePopupClick}>
+            <div className={style.Body}>
+              <h3 className={style.Question}>Confirm delete?</h3>
+              <div className={style.Actions}>
+                <button className={style.Cancel} onClick={() => setConfirmDelete(false)}>
+                  Cancel
+                </button>
+                <button className={style.Confirm} onClick={handleDelete}>
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        <button className={style.Delete} onClick={() => setConfirmDelete(true)}>
+          <span className="material-symbols-outlined">delete</span>Delete
+        </button>
         <div className={style.Heading}>
-          <h3 className={style.Title}>{task.title}</h3>
-          <button className={style.Edit}>
-            <span className="material-symbols-outlined">edit</span>
-          </button>
+          <div className={style.Title}>
+            <input
+              type="text"
+              className={style.Input}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Task title..."
+            />
+            {isWarning && <p className={style.Warning}>Enter valid task title</p>}
+          </div>
         </div>
         <div className={style.Divider}>
           <p className={style.Label}>Description</p>
-          <button className={style.Edit}>
-            <span className="material-symbols-outlined">edit</span>
-          </button>
         </div>
-        <p className={style.Description}>{task.description}</p>
+        <textarea
+          className={style.Description}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="No description..."
+        ></textarea>
         <div className={style.Divider}>
           <p className={style.Label}>Priority</p>
         </div>
@@ -52,7 +115,7 @@ const Task: FC<TaskProps> = ({ task }) => {
           <button className={style.Cancel} onClick={handleButtonClick}>
             Cancel
           </button>
-          <button className={style.Confirm} onClick={handleButtonClick}>
+          <button className={style.Confirm} onClick={handleConfirm}>
             Confirm
           </button>
         </div>

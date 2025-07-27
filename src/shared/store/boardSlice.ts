@@ -40,30 +40,6 @@ export const boardSlice = createSlice({
     unsetSelectedTask: (state) => {
       state.selectedTask = null;
     },
-    changeTaskTitle: (state, action: PayloadAction<{ selectedTask: TTask; title: string }>) => {
-      const { selectedTask, title } = action.payload;
-
-      const taskColumn = state.columns[selectedTask.column];
-
-      const task = taskColumn.tasks.find((task) => task.id === selectedTask.id);
-
-      if (task) {
-        task.title = title;
-        state.selectedTask = task;
-      }
-    },
-    changeTaskDescription: (state, action: PayloadAction<{ selectedTask: TTask; description: string }>) => {
-      const { selectedTask, description } = action.payload;
-
-      const taskColumn = state.columns[selectedTask.column];
-
-      const task = taskColumn.tasks.find((task) => task.id === selectedTask.id);
-
-      if (task) {
-        task.description = description;
-        state.selectedTask = task;
-      }
-    },
     addTask: (state, action: PayloadAction<{ title: string; description: string; priority: TTaskPriority }>) => {
       const { title, description, priority } = action.payload;
 
@@ -87,15 +63,25 @@ export const boardSlice = createSlice({
       taskColumn.tasks = taskColumn.tasks.filter((task) => task.id !== selectedTask.id);
       state.selectedTask = null;
     },
+    editSelectedTask: (state, action: PayloadAction<{ title: string; description: string }>) => {
+      const { title, description } = action.payload;
+
+      if (!state.selectedTask) return;
+
+      const id = state.selectedTask.id;
+      const column = state.selectedTask.column;
+
+      const task = state.columns[column].tasks.find((task) => task.id === id);
+
+      if (!task) return;
+
+      if (task.title !== title) task.title = title;
+      if (task.description !== description) task.description = description;
+
+      state.selectedTask = task;
+    },
   },
 });
 
-export const {
-  setIsAdding,
-  setSelectedTask,
-  unsetSelectedTask,
-  changeTaskTitle,
-  changeTaskDescription,
-  addTask,
-  deleteTask,
-} = boardSlice.actions;
+export const { setIsAdding, setSelectedTask, unsetSelectedTask, addTask, deleteTask, editSelectedTask } =
+  boardSlice.actions;

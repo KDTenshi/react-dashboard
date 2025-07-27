@@ -17,10 +17,11 @@
   // height: 75vh;
   background: c.$WHITE;
   border-radius: 25px;
-  padding: 25px 50px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  position: relative;
 }
 
 .Heading {
@@ -31,9 +32,43 @@
 }
 
 .Title {
+  width: 100%;
+  position: relative;
+}
+
+.Input {
   @include HEADING_3();
 
   color: c.$BLACK;
+  width: 75%;
+  background: c.$WHITE;
+  border: 0;
+  outline: 0;
+}
+
+.Warning {
+  @include BODY_2();
+
+  color: c.$WHITE;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(calc(100% + 15px));
+  background: c.$RED;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: 10px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 15px;
+    height: 15px;
+    background: c.$RED;
+    transform: rotate(45deg) translateY(-50%);
+  }
 }
 
 .Edit {
@@ -68,8 +103,13 @@
 .Description {
   @include BODY_2();
 
-  color: c.$DARK_GRAY;
   padding: 0 10px;
+  height: 15vh;
+  color: c.$DARK_GRAY;
+  resize: none;
+  background: c.$WHITE;
+  border: 0;
+  outline: 0;
 }
 
 .Priorities {
@@ -151,4 +191,64 @@
   &:hover {
     box-shadow: 0 0 10px c.$GRAY;
   }
+}
+
+.Delete {
+  @include BODY_2();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: c.$DARK_GRAY;
+  background: c.$LIGHT_GRAY;
+  outline: 0;
+  border: 0;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+
+  &:hover {
+    background: c.$RED;
+    color: c.$WHITE;
+  }
+}
+
+.Popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color: c.$DARK_GRAY, $alpha: 0.25);
+  z-index: 10;
+}
+
+.Body {
+  background: c.$WHITE;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.Question {
+  @include HEADING_3();
+
+  color: c.$BLACK;
+}
+
+.Actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
