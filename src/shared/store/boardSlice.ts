@@ -63,8 +63,11 @@ export const boardSlice = createSlice({
       taskColumn.tasks = taskColumn.tasks.filter((task) => task.id !== selectedTask.id);
       state.selectedTask = null;
     },
-    editSelectedTask: (state, action: PayloadAction<{ title: string; description: string }>) => {
-      const { title, description } = action.payload;
+    editSelectedTask: (
+      state,
+      action: PayloadAction<{ title: string; description: string; priority: TTaskPriority }>
+    ) => {
+      const { title, description, priority } = action.payload;
 
       if (!state.selectedTask) return;
 
@@ -77,6 +80,7 @@ export const boardSlice = createSlice({
 
       if (task.title !== title) task.title = title;
       if (task.description !== description) task.description = description;
+      if (task.priority !== priority) task.priority = priority;
 
       state.selectedTask = task;
     },

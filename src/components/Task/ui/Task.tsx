@@ -16,6 +16,7 @@ const Task: FC<TaskProps> = ({ task }) => {
 
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
+  const [priority, setPriority] = useState(task.priority);
 
   const [isWarning, setIsWarning] = useState(false);
 
@@ -54,7 +55,7 @@ const Task: FC<TaskProps> = ({ task }) => {
     if (!newTitle) setIsWarning(true);
 
     if (newTitle) {
-      dispatch(editSelectedTask({ title: newTitle, description: newDescription }));
+      dispatch(editSelectedTask({ title: newTitle, description: newDescription, priority }));
       dispatch(unsetSelectedTask());
     }
   };
@@ -105,11 +106,24 @@ const Task: FC<TaskProps> = ({ task }) => {
           <p className={style.Label}>Priority</p>
         </div>
         <div className={style.Priorities}>
-          <button className={task.priority === "low" ? [style.Low, style.Active].join(" ") : style.Low}>Low</button>
-          <button className={task.priority === "moderate" ? [style.Moderate, style.Active].join(" ") : style.Moderate}>
+          <button
+            className={priority === "low" ? [style.Low, style.Active].join(" ") : style.Low}
+            onClick={() => setPriority("low")}
+          >
+            Low
+          </button>
+          <button
+            className={priority === "moderate" ? [style.Moderate, style.Active].join(" ") : style.Moderate}
+            onClick={() => setPriority("moderate")}
+          >
             Moderate
           </button>
-          <button className={task.priority === "high" ? [style.High, style.Active].join(" ") : style.High}>High</button>
+          <button
+            className={priority === "high" ? [style.High, style.Active].join(" ") : style.High}
+            onClick={() => setPriority("high")}
+          >
+            High
+          </button>
         </div>
         <div className={style.Buttons}>
           <button className={style.Cancel} onClick={handleButtonClick}>
