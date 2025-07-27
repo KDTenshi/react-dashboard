@@ -1,9 +1,10 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { TColumn, TColumnType, TTask } from "../types/types";
+import type { TColumn, TColumnType, TTask, TTaskPriority } from "../types/types";
 
 type BoardState = {
   columns: { [key in TColumnType]: TColumn };
   selectedTask: TTask | null;
+  isAdding: boolean;
 };
 
 const initialState: BoardState = {
@@ -22,12 +23,16 @@ const initialState: BoardState = {
     },
   },
   selectedTask: null,
+  isAdding: false,
 };
 
 export const boardSlice = createSlice({
   name: "board",
   initialState,
   reducers: {
+    setIsAdding: (state, action: PayloadAction<boolean>) => {
+      state.isAdding = action.payload;
+    },
     setSelectedTask: (state, action: PayloadAction<{ task: TTask }>) => {
       const { task } = action.payload;
       state.selectedTask = task;
@@ -59,17 +64,17 @@ export const boardSlice = createSlice({
         state.selectedTask = task;
       }
     },
-    addTask: (state, action: PayloadAction<{ title: string }>) => {
-      const { title } = action.payload;
+    addTask: (state, action: PayloadAction<{ title: string; description: string; priority: TTaskPriority }>) => {
+      const { title, description, priority } = action.payload;
 
       const newTask: TTask = {
         id: `${Date.now()}`,
         title,
-        description: "No description",
+        description,
         date: Date.now(),
         notes: [],
         column: "todo",
-        priority: "low",
+        priority,
       };
 
       state.columns.todo.tasks = [newTask, ...state.columns.todo.tasks];
@@ -85,5 +90,12 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { setSelectedTask, unsetSelectedTask, changeTaskTitle, changeTaskDescription, addTask, deleteTask } =
-  boardSlice.actions;
+export const {
+  setIsAdding,
+  setSelectedTask,
+  unsetSelectedTask,
+  changeTaskTitle,
+  changeTaskDescription,
+  addTask,
+  deleteTask,
+} = boardSlice.actions;

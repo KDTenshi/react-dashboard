@@ -1,14 +1,16 @@
 import type { FC } from "react";
 
 import style from "./Task.module.css";
-import { useAppDispatch, useAppSelector } from "../../../app/store/appStore";
+import { useAppDispatch } from "../../../app/store/appStore";
 import { unsetSelectedTask } from "../../../shared/store/boardSlice";
+import type { TTask } from "../../../shared/types/types";
 
-const Task: FC = () => {
-  const selectedTask = useAppSelector((state) => state.board.selectedTask);
+interface TaskProps {
+  task: TTask;
+}
+
+const Task: FC<TaskProps> = ({ task }) => {
   const dispatch = useAppDispatch();
-
-  if (!selectedTask) return;
 
   const handleClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -24,7 +26,7 @@ const Task: FC = () => {
     <div className={style.Wrapper} onClick={handleClick}>
       <div className={style.Task}>
         <div className={style.Heading}>
-          <h3 className={style.Title}>{selectedTask.title}</h3>
+          <h3 className={style.Title}>{task.title}</h3>
           <button className={style.Edit}>
             <span className="material-symbols-outlined">edit</span>
           </button>
@@ -35,22 +37,16 @@ const Task: FC = () => {
             <span className="material-symbols-outlined">edit</span>
           </button>
         </div>
-        <p className={style.Description}>{selectedTask.description}</p>
+        <p className={style.Description}>{task.description}</p>
         <div className={style.Divider}>
           <p className={style.Label}>Priority</p>
         </div>
         <div className={style.Priorities}>
-          <button className={selectedTask.priority === "low" ? [style.Low, style.Active].join(" ") : style.Low}>
-            Low
-          </button>
-          <button
-            className={selectedTask.priority === "moderate" ? [style.Moderate, style.Active].join(" ") : style.Moderate}
-          >
+          <button className={task.priority === "low" ? [style.Low, style.Active].join(" ") : style.Low}>Low</button>
+          <button className={task.priority === "moderate" ? [style.Moderate, style.Active].join(" ") : style.Moderate}>
             Moderate
           </button>
-          <button className={selectedTask.priority === "high" ? [style.High, style.Active].join(" ") : style.High}>
-            High
-          </button>
+          <button className={task.priority === "high" ? [style.High, style.Active].join(" ") : style.High}>High</button>
         </div>
         <div className={style.Buttons}>
           <button className={style.Cancel} onClick={handleButtonClick}>

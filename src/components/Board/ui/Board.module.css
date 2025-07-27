@@ -57,13 +57,14 @@
   background: #f8f9fa;
 }
 
-.Filters {
+.Actions {
   display: flex;
   align-items: center;
   justify-content: start;
+  gap: 10px;
 }
 
-.Filter {
+.Button {
   font-size: 20px;
   font-family: "Mulish", sans-serif;
   font-weight: 400;
@@ -80,7 +81,7 @@
   transition: all 0.25s;
   cursor: pointer;
 }
-.Filter:hover {
+.Button:hover {
   background: #dee2e6;
   color: #212529;
 }

@@ -12,9 +12,8 @@
   backdrop-filter: blur(5px);
 }
 
-.Task {
+.Add {
   width: 50vw;
-  // height: 75vh;
   background: c.$WHITE;
   border-radius: 25px;
   padding: 25px 50px;
@@ -23,40 +22,17 @@
   gap: 15px;
 }
 
-.Heading {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 15px;
-}
-
 .Title {
-  @include HEADING_3();
+  @include HEADING_2();
 
   color: c.$BLACK;
 }
 
-.Edit {
-  background: transparent;
-  border: 0;
-  outline: 0;
-  color: c.$DARK_GRAY;
-  cursor: pointer;
-  transition: all 0.25s;
-  padding: 5px;
-  border-radius: 5px;
-
-  &:hover {
-    background: c.$LIGHT_GRAY;
-    color: c.$BLACK;
-  }
-}
-
-.Divider {
+.Form {
   display: flex;
-  align-items: center;
-  justify-content: start;
+  flex-direction: column;
   gap: 10px;
+  padding: 0 15px;
 }
 
 .Label {
@@ -65,11 +41,59 @@
   color: c.$DARK_GRAY;
 }
 
-.Description {
+.WithWarning {
+  position: relative;
+}
+
+.Input {
   @include BODY_2();
 
   color: c.$DARK_GRAY;
-  padding: 0 10px;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: c.$LIGHT_GRAY;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.Warning {
+  @include BODY_2();
+
+  color: c.$WHITE;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(calc(-100% - 15px));
+  background: c.$RED;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: 10px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 15px;
+    height: 15px;
+    background: c.$RED;
+    transform: rotate(45deg) translateY(50%);
+  }
+}
+
+.Textarea {
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+  width: 100%;
+  height: 15vh;
+  outline: 0;
+  border: 0;
+  background: c.$LIGHT_GRAY;
+  padding: 10px 20px;
+  border-radius: 10px;
+  resize: none;
 }
 
 .Priorities {

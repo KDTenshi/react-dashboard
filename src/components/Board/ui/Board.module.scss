@@ -60,13 +60,14 @@
   background: c.$WHITE;
 }
 
-.Filters {
+.Actions {
   display: flex;
   align-items: center;
   justify-content: start;
+  gap: 10px;
 }
 
-.Filter {
+.Button {
   @include BODY_1();
 
   color: c.$DARK_GRAY;

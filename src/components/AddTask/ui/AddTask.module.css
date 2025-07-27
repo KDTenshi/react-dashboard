@@ -10,7 +10,7 @@
           backdrop-filter: blur(5px);
 }
 
-.Task {
+.Add {
   width: 50vw;
   background: #f8f9fa;
   border-radius: 25px;
@@ -20,40 +20,18 @@
   gap: 15px;
 }
 
-.Heading {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 15px;
-}
-
 .Title {
-  font-size: 25px;
+  font-size: 35px;
   font-family: "Space Grotesk", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   color: #212529;
 }
 
-.Edit {
-  background: transparent;
-  border: 0;
-  outline: 0;
-  color: #495057;
-  cursor: pointer;
-  transition: all 0.25s;
-  padding: 5px;
-  border-radius: 5px;
-}
-.Edit:hover {
-  background: #dee2e6;
-  color: #212529;
-}
-
-.Divider {
+.Form {
   display: flex;
-  align-items: center;
-  justify-content: start;
+  flex-direction: column;
   gap: 10px;
+  padding: 0 15px;
 }
 
 .Label {
@@ -63,12 +41,62 @@
   color: #495057;
 }
 
-.Description {
+.WithWarning {
+  position: relative;
+}
+
+.Input {
   font-size: 16px;
   font-family: "Mulish", sans-serif;
   font-weight: 400;
   color: #495057;
-  padding: 0 10px;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: #dee2e6;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.Warning {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #f8f9fa;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(calc(-100% - 15px));
+  background: #dd2c2f;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.Warning:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 15px;
+  height: 15px;
+  background: #dd2c2f;
+  transform: rotate(45deg) translateY(50%);
+}
+
+.Textarea {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+  width: 100%;
+  height: 15vh;
+  outline: 0;
+  border: 0;
+  background: #dee2e6;
+  padding: 10px 20px;
+  border-radius: 10px;
+  resize: none;
 }
 
 .Priorities {
@@ -178,4 +206,4 @@
 }
 .Cancel:hover {
   box-shadow: 0 0 10px #adb5bd;
-}/*# sourceMappingURL=Task.module.css.map */
+}/*# sourceMappingURL=AddTask.module.css.map */
