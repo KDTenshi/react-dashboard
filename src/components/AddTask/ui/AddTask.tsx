@@ -9,12 +9,15 @@ import { DateTimePicker } from "../../DateTimePicker";
 const AddTask: FC = () => {
   const dispatch = useAppDispatch();
 
+  const date = Date.now();
+
   const [titleValue, setTitleValue] = useState("");
   const [descValue, setDescValue] = useState("");
   const [priority, setPriority] = useState<TTaskPriority>("low");
-  const [deadline, setDeadline] = useState(Date.now());
+  const [deadline, setDeadline] = useState(date);
 
   const [isWarning, setIsWarning] = useState(false);
+  const [isDateWarning, setIsDateWarning] = useState(false);
   const [isPickerShown, setIsPickerShown] = useState(false);
 
   useEffect(() => {
@@ -24,6 +27,14 @@ const AddTask: FC = () => {
       }, 2000);
     }
   }, [isWarning]);
+
+  useEffect(() => {
+    if (isDateWarning) {
+      setTimeout(() => {
+        setIsDateWarning(false);
+      }, 2000);
+    }
+  }, [isDateWarning]);
 
   const clearAdding = () => {
     setTitleValue("");
@@ -39,11 +50,13 @@ const AddTask: FC = () => {
     const title = titleValue.trim();
     const description = descValue.trim();
 
-    if (title) {
+    if (!title) setIsWarning(true);
+
+    if (deadline < date) setIsDateWarning(true);
+
+    if (title && deadline >= date) {
       dispatch(addTask({ title, description, priority, deadline }));
       clearAdding();
-    } else {
-      setIsWarning(true);
     }
   };
 
@@ -109,6 +122,7 @@ const AddTask: FC = () => {
             <button className={style.Calendar} type="button" onClick={() => setIsPickerShown(true)}>
               <span className="material-symbols-outlined">calendar_clock</span>
             </button>
+            {isDateWarning && <p className={style.Warning}>Invalid date</p>}
           </div>
           <div className={style.Buttons}>
             <button className={style.Cancel} type="button" onClick={clearAdding}>

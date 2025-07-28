@@ -213,6 +213,9 @@
   align-items: center;
   justify-content: start;
   gap: 10px;
+  position: relative;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .Date {
