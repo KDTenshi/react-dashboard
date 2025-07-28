@@ -1,18 +1,19 @@
 .SideBar {
   flex-shrink: 0;
-  width: 20vw;
-  height: 100vh;
+  width: 15vw;
+  margin-left: 0;
+  height: inherit;
   background: #f8f9fa;
   border-right: 1px solid #adb5bd;
+  transition: all 0.25s;
 }
 
 .Shown {
-  animation: Show 0.125s linear;
+  margin-left: 0;
 }
 
 .Hidden {
-  animation: Hide 0.125s linear;
-  margin-left: -20vw;
+  margin-left: -15vw;
 }
 
 .Logo {
@@ -59,6 +60,9 @@
   gap: 10px;
   padding: 25px 15px;
   border-bottom: 1px solid #adb5bd;
+}
+.Nav_Small {
+  padding: 25px 10px;
 }
 
 .Link {

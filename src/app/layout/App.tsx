@@ -13,9 +13,9 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <SideBar />
+      <Header />
       <div className="Body">
-        <Header />
+        <SideBar />
         <Board />
       </div>
       {selectedTask && <Task task={selectedTask} />}

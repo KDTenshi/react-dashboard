@@ -1,31 +1,22 @@
-import { useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 
 import style from "./SideBar.module.css";
-import { Logo } from "../../../shared/ui";
+import { useAppSelector } from "../../../app/store/appStore";
 
 const SideBar: FC = () => {
-  const [status, setStatus] = useState<"shown" | "hidden" | null>(null);
+  const status = useAppSelector((state) => state.board.sideBarStatus);
+  const [className, setClassName] = useState(style.SideBar);
 
-  const className =
-    status === "shown"
-      ? [style.SideBar, style.Shown].join(" ")
-      : status === "hidden"
-      ? [style.SideBar, style.Hidden].join(" ")
-      : style.SideBar;
+  useEffect(() => {
+    console.log(status);
+
+    if (status === "shown") setClassName([style.SideBar, style.Shown].join(" "));
+
+    if (status === "hidden") setClassName([style.SideBar, style.Hidden].join(" "));
+  }, [status]);
 
   return (
     <div className={className}>
-      <div className={style.Logo}>
-        <Logo />
-        <button className={style.Button} onClick={() => setStatus("hidden")}>
-          <span className="material-symbols-outlined">keyboard_double_arrow_left</span>
-        </button>
-        {status === "hidden" && (
-          <button className={[style.Button, style.Show].join(" ")} onClick={() => setStatus("shown")}>
-            <span className="material-symbols-outlined">keyboard_double_arrow_right</span>
-          </button>
-        )}
-      </div>
       <nav className={style.Nav}>
         <a href="/" className={style.Link}>
           <span className="material-symbols-outlined">home</span>

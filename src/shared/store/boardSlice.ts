@@ -5,6 +5,7 @@ type BoardState = {
   columns: { [key in TColumnType]: TColumn };
   selectedTask: TTask | null;
   isAdding: boolean;
+  sideBarStatus: "shown" | "hidden" | null;
 };
 
 const initialState: BoardState = {
@@ -24,6 +25,7 @@ const initialState: BoardState = {
   },
   selectedTask: null,
   isAdding: false,
+  sideBarStatus: null,
 };
 
 export const boardSlice = createSlice({
@@ -88,8 +90,22 @@ export const boardSlice = createSlice({
 
       state.selectedTask = task;
     },
+    switchSideBarStatus: (state) => {
+      if (!state.sideBarStatus || state.sideBarStatus === "shown") {
+        state.sideBarStatus = "hidden";
+      } else if (state.sideBarStatus === "hidden") {
+        state.sideBarStatus = "shown";
+      }
+    },
   },
 });
 
-export const { setIsAdding, setSelectedTask, unsetSelectedTask, addTask, deleteTask, editSelectedTask } =
-  boardSlice.actions;
+export const {
+  setIsAdding,
+  setSelectedTask,
+  unsetSelectedTask,
+  addTask,
+  deleteTask,
+  editSelectedTask,
+  switchSideBarStatus,
+} = boardSlice.actions;

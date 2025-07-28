@@ -1,16 +1,29 @@
 import type { FC } from "react";
 
 import style from "./Header.module.css";
+import { Logo } from "../../../shared/ui";
+import { useAppDispatch } from "../../../app/store/appStore";
+import { switchSideBarStatus } from "../../../shared/store/boardSlice";
 
 const Header: FC = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <header className={style.Header}>
-      <form className={style.SearchBar}>
-        <input type="text" className={style.Input} placeholder="Search..." />
-        <button className={style.Search}>
-          <span className="material-symbols-outlined">search</span>
-        </button>
-      </form>
+      <div className={style.Container}>
+        <div className={style.Logo}>
+          <button className={style.Menu} onClick={() => dispatch(switchSideBarStatus())}>
+            <span className="material-symbols-outlined">menu</span>
+          </button>
+          <Logo />
+        </div>
+        <form className={style.SearchBar}>
+          <input type="text" className={style.Input} placeholder="Search..." />
+          <button className={style.Search}>
+            <span className="material-symbols-outlined">search</span>
+          </button>
+        </form>
+      </div>
       <button className={style.User}>
         <div className={style.Text}>
           <h4 className={style.Name}>User Name</h4>
