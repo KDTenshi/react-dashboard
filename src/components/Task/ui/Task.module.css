@@ -280,6 +280,9 @@
   align-items: center;
   justify-content: start;
   gap: 10px;
+  position: relative;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .Date {
@@ -290,6 +293,8 @@
   background: #dee2e6;
   padding: 10px 20px;
   border-radius: 10px;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .Calendar {

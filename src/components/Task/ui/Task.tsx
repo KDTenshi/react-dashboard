@@ -21,6 +21,7 @@ const Task: FC<TaskProps> = ({ task }) => {
   const [deadline, setDeadline] = useState(task.deadline);
 
   const [isWarning, setIsWarning] = useState(false);
+  const [isDateWarning, setIsDateWarning] = useState(false);
   const [isPickerShown, setIsPickerShown] = useState(false);
 
   useEffect(() => {
@@ -30,6 +31,14 @@ const Task: FC<TaskProps> = ({ task }) => {
       }, 2000);
     }
   }, [isWarning]);
+
+  useEffect(() => {
+    if (isDateWarning) {
+      setTimeout(() => {
+        setIsDateWarning(false);
+      }, 2000);
+    }
+  }, [isDateWarning]);
 
   const handleClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -57,7 +66,9 @@ const Task: FC<TaskProps> = ({ task }) => {
 
     if (!newTitle) setIsWarning(true);
 
-    if (newTitle) {
+    if (task.date >= deadline) setIsDateWarning(true);
+
+    if (newTitle && task.date < deadline) {
       dispatch(editSelectedTask({ title: newTitle, description: newDescription, priority, deadline }));
       dispatch(unsetSelectedTask());
     }
@@ -129,12 +140,15 @@ const Task: FC<TaskProps> = ({ task }) => {
             High
           </button>
         </div>
+        <p className={style.Label}>Created at</p>
+        <p className={style.Date}>{new Date(task.date).toLocaleString()}</p>
         <p className={style.Label}>Deadline</p>
         <div className={style.Deadline}>
           <p className={style.Date}>{new Date(deadline).toLocaleString()}</p>
           <button className={style.Calendar} onClick={() => setIsPickerShown(true)}>
             <span className="material-symbols-outlined">calendar_clock</span>
           </button>
+          {isDateWarning && <p className={style.Warning}>Invalid date</p>}
         </div>
         <div className={style.Buttons}>
           <button className={style.Cancel} onClick={handleButtonClick}>

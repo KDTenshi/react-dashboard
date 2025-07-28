@@ -1,20 +1,20 @@
 import { useEffect, useState, type FC } from "react";
 
-import style from "./AddTask.module.css";
 import type { TTaskPriority } from "../../../shared/types/types";
+
 import { useAppDispatch } from "../../../app/store/appStore";
 import { addTask, setIsAdding } from "../../../shared/store/boardSlice";
 import { DateTimePicker } from "../../DateTimePicker";
 
+import style from "./AddTask.module.css";
+
 const AddTask: FC = () => {
   const dispatch = useAppDispatch();
-
-  const date = Date.now();
 
   const [titleValue, setTitleValue] = useState("");
   const [descValue, setDescValue] = useState("");
   const [priority, setPriority] = useState<TTaskPriority>("low");
-  const [deadline, setDeadline] = useState(date);
+  const [deadline, setDeadline] = useState(Date.now());
 
   const [isWarning, setIsWarning] = useState(false);
   const [isDateWarning, setIsDateWarning] = useState(false);
@@ -46,6 +46,8 @@ const AddTask: FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const date = Date.now();
 
     const title = titleValue.trim();
     const description = descValue.trim();

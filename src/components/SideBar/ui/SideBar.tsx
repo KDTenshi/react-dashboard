@@ -8,8 +8,6 @@ const SideBar: FC = () => {
   const [className, setClassName] = useState(style.SideBar);
 
   useEffect(() => {
-    console.log(status);
-
     if (status === "shown") setClassName([style.SideBar, style.Shown].join(" "));
 
     if (status === "hidden") setClassName([style.SideBar, style.Hidden].join(" "));

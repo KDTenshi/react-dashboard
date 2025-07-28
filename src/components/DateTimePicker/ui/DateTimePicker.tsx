@@ -73,8 +73,6 @@ const DateTimePicker: FC<DateTimePickerProps> = ({ setIsShown, timestamp, setTim
   };
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-
     const timeStrings = e.target.value.split(":");
 
     const newHours = +timeStrings[0];

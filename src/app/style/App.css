@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-html {
-  background: red;
-}
-
 .App {
   background: #f8f9fa;
   display: flex;
