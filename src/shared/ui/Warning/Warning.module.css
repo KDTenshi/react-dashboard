@@ -1,0 +1,26 @@
+.Warning {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #f8f9fa;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  background: #dd2c2f;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: 10px;
+  z-index: 5;
+}
+.Warning:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 15px;
+  height: 15px;
+  background: #dd2c2f;
+  transform: rotate(45deg) translateY(-50%);
+}/*# sourceMappingURL=Warning.module.css.map */

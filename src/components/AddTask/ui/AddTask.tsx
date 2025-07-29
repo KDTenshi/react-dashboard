@@ -1,12 +1,13 @@
-import { useEffect, useState, type FC } from "react";
+import { useState, type FC } from "react";
 
 import type { TTaskPriority } from "../../../shared/types/types";
 
 import { useAppDispatch } from "../../../app/store/appStore";
 import { addTask, setIsAdding } from "../../../shared/store/boardSlice";
-import { DateTimePicker } from "../../DateTimePicker";
 
 import style from "./AddTask.module.css";
+import { PriorityPicker } from "../../PriorityPicker";
+import { DateDisplay, DatePicker, Popup, Warning } from "../../../shared/ui";
 
 const AddTask: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,77 +17,47 @@ const AddTask: FC = () => {
   const [priority, setPriority] = useState<TTaskPriority>("low");
   const [deadline, setDeadline] = useState(Date.now());
 
-  const [isWarning, setIsWarning] = useState(false);
+  const [isTitleWarning, setIsTitleWarning] = useState(false);
   const [isDateWarning, setIsDateWarning] = useState(false);
   const [isPickerShown, setIsPickerShown] = useState(false);
-
-  useEffect(() => {
-    if (isWarning) {
-      setTimeout(() => {
-        setIsWarning(false);
-      }, 2000);
-    }
-  }, [isWarning]);
-
-  useEffect(() => {
-    if (isDateWarning) {
-      setTimeout(() => {
-        setIsDateWarning(false);
-      }, 2000);
-    }
-  }, [isDateWarning]);
-
-  const clearAdding = () => {
-    setTitleValue("");
-    setDescValue("");
-    setPriority("low");
-
-    dispatch(setIsAdding(false));
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const date = Date.now();
+    const date = Math.floor(Date.now() / 1000 / 60) * 1000 * 60;
 
     const title = titleValue.trim();
     const description = descValue.trim();
 
-    if (!title) setIsWarning(true);
+    if (!title) setIsTitleWarning(true);
 
     if (deadline < date) setIsDateWarning(true);
 
     if (title && deadline >= date) {
       dispatch(addTask({ title, description, priority, deadline }));
-      clearAdding();
+      dispatch(setIsAdding(false));
     }
   };
 
-  const handleClick = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-
-    if (target.classList.contains(style.Wrapper)) clearAdding();
-  };
-
   return (
-    <div className={style.Wrapper} onClick={handleClick}>
-      {isPickerShown && (
-        <DateTimePicker setIsShown={setIsPickerShown} timestamp={deadline} setTimestamp={setDeadline} />
-      )}
-      <div className={style.Add}>
-        <h2 className={style.Title}>Add new task</h2>
-        <form className={style.Form} onSubmit={handleSubmit}>
+    <Popup hide={() => dispatch(setIsAdding(false))}>
+      {isPickerShown && <DatePicker setIsShown={setIsPickerShown} timestamp={deadline} setTimestamp={setDeadline} />}
+      <h2 className={style.Title}>Add new task</h2>
+      <form className={style.Form} onSubmit={handleSubmit}>
+        <div className={style.Group}>
           <p className={style.Label}>Task title</p>
-          <div className={style.WithWarning}>
-            <input
-              type="text"
-              className={style.Input}
-              placeholder="Task title..."
-              value={titleValue}
-              onChange={(e) => setTitleValue(e.target.value)}
-            />
-            {isWarning && <p className={style.Warning}>Enter valid task title</p>}
-          </div>
+          <input
+            type="text"
+            className={style.Input}
+            placeholder="Task title..."
+            value={titleValue}
+            onChange={(e) => setTitleValue(e.target.value)}
+          />
+          {isTitleWarning && (
+            <Warning text="Invalid title" isShown={isTitleWarning} hide={() => setIsTitleWarning(false)} />
+          )}
+        </div>
+        <div className={style.Group}>
           <p className={style.Label}>Task description</p>
           <textarea
             className={style.Textarea}
@@ -94,47 +65,28 @@ const AddTask: FC = () => {
             value={descValue}
             onChange={(e) => setDescValue(e.target.value)}
           ></textarea>
+        </div>
+        <div className={style.Group}>
           <p className={style.Label}>Task priority</p>
-          <div className={style.Priorities}>
-            <button
-              className={priority === "low" ? [style.Low, style.Active].join(" ") : style.Low}
-              type="button"
-              onClick={() => setPriority("low")}
-            >
-              Low
-            </button>
-            <button
-              className={priority === "moderate" ? [style.Moderate, style.Active].join(" ") : style.Moderate}
-              type="button"
-              onClick={() => setPriority("moderate")}
-            >
-              Moderate
-            </button>
-            <button
-              className={priority === "high" ? [style.High, style.Active].join(" ") : style.High}
-              type="button"
-              onClick={() => setPriority("high")}
-            >
-              High
-            </button>
-          </div>
+          <PriorityPicker activePriority={priority} setPriority={setPriority} />
+        </div>
+        <div className={style.Group}>
           <p className={style.Label}>Task deadline</p>
           <div className={style.Deadline}>
-            <p className={style.Date}>{new Date(deadline).toLocaleString()}</p>
-            <button className={style.Calendar} type="button" onClick={() => setIsPickerShown(true)}>
-              <span className="material-symbols-outlined">calendar_clock</span>
-            </button>
-            {isDateWarning && <p className={style.Warning}>Invalid date</p>}
+            <DateDisplay timestamp={deadline} setTimestamp={setDeadline} withPicker />
+            {isDateWarning && (
+              <Warning text="Invalid date" isShown={isDateWarning} hide={() => setIsDateWarning(false)} />
+            )}
           </div>
-          <div className={style.Buttons}>
-            <button className={style.Cancel} type="button" onClick={clearAdding}>
-              Cancel
-            </button>
-            <button className={style.Confirm}>Confirm</button>
-          </div>
-        </form>
-      </div>
-    </div>
+        </div>
+        <div className={style.Buttons}>
+          <button className={style.Cancel} type="button" onClick={() => dispatch(setIsAdding(false))}>
+            Cancel
+          </button>
+          <button className={style.Confirm}>Confirm</button>
+        </div>
+      </form>
+    </Popup>
   );
 };
 

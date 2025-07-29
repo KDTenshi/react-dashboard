@@ -1,10 +1,13 @@
+@use "../../style/colors" as c;
+@import "../../style/mixins";
+
 .Wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(73, 80, 87, 0.25);
+  background: rgba($color: c.$DARK_GRAY, $alpha: 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +16,7 @@
 
 .Picker {
   width: 25vw;
-  background: #f8f9fa;
+  background: c.$WHITE;
   border-radius: 15px;
   padding: 15px 25px;
   display: flex;
@@ -30,11 +33,10 @@
 
 .Time,
 .Date {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #495057;
-  background: #dee2e6;
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+  background: c.$LIGHT_GRAY;
   padding: 10px 15px;
   border-radius: 10px;
 }
@@ -61,14 +63,15 @@
   outline: 0;
   padding: 5px;
   border-radius: 5px;
-  background: #f8f9fa;
+  background: c.$WHITE;
   cursor: pointer;
-  color: #495057;
+  color: c.$DARK_GRAY;
   transition: all 0.25s;
-}
-.Button:hover {
-  background: #dee2e6;
-  color: #212529;
+
+  &:hover {
+    background: c.$LIGHT_GRAY;
+    color: c.$BLACK;
+  }
 }
 
 .Days {
@@ -78,33 +81,32 @@
 }
 
 .WeekDay {
-  font-size: 14px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
+  @include BODY_3();
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8f9fa;
-  color: #adb5bd;
-  border-left: 1px solid #dee2e6;
-  border-right: 1px solid #dee2e6;
+  background: c.$WHITE;
+  color: c.$GRAY;
+  border-left: 1px solid c.$LIGHT_GRAY;
+  border-right: 1px solid c.$LIGHT_GRAY;
 }
 
 .Day {
-  font-size: 14px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
+  @include BODY_3();
+
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #495057;
-  background: #f8f9fa;
+  color: c.$DARK_GRAY;
+  background: c.$WHITE;
   cursor: pointer;
   transition: all 0.25s;
   padding: 10px;
   border-radius: 5px;
+
+  &:hover {
+    background: c.$LIGHT_GRAY;
+    color: c.$BLACK;
+  }
 }
-.Day:hover {
-  background: #dee2e6;
-  color: #212529;
-}/*# sourceMappingURL=DateTimePicker.module.css.map */

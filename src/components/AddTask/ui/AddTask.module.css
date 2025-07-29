@@ -1,25 +1,3 @@
-.Wrapper {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(73, 80, 87, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-
-.Add {
-  width: 50vw;
-  background: #f8f9fa;
-  border-radius: 25px;
-  padding: 25px 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
 .Title {
   font-size: 35px;
   font-family: "Space Grotesk", sans-serif;
@@ -30,8 +8,15 @@
 .Form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   padding: 0 15px;
+}
+
+.Group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 
 .Label {
@@ -39,10 +24,6 @@
   font-family: "Mulish", sans-serif;
   font-weight: 400;
   color: #495057;
-}
-
-.WithWarning {
-  position: relative;
 }
 
 .Input {
@@ -58,32 +39,6 @@
   border-radius: 10px;
 }
 
-.Warning {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #f8f9fa;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateY(calc(-100% - 15px));
-  background: #dd2c2f;
-  width: -moz-max-content;
-  width: max-content;
-  padding: 10px 15px;
-  border-radius: 10px;
-}
-.Warning:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 25%;
-  width: 15px;
-  height: 15px;
-  background: #dd2c2f;
-  transform: rotate(45deg) translateY(50%);
-}
-
 .Textarea {
   font-size: 16px;
   font-family: "Mulish", sans-serif;
@@ -97,74 +52,6 @@
   padding: 10px 20px;
   border-radius: 10px;
   resize: none;
-}
-
-.Priorities {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  padding-left: 10px;
-  gap: 10px;
-}
-
-.Low {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #212529;
-  background: #f8f9fa;
-  border: 1px solid #2dc653;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-}
-.Low.Active {
-  background: #2dc653 !important;
-}
-.Low:hover {
-  background: rgba(45, 198, 83, 0.5);
-}
-
-.Moderate {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #212529;
-  background: #f8f9fa;
-  border: 1px solid #ffd819;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-}
-.Moderate.Active {
-  background: #ffd819 !important;
-}
-.Moderate:hover {
-  background: rgba(255, 216, 25, 0.5);
-}
-
-.High {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #212529;
-  background: #f8f9fa;
-  border: 1px solid #dd2c2f;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-}
-.High.Active {
-  background: #dd2c2f !important;
-}
-.High:hover {
-  background: rgba(221, 44, 47, 0.5);
 }
 
 .Buttons {
@@ -206,39 +93,4 @@
 }
 .Cancel:hover {
   box-shadow: 0 0 10px #adb5bd;
-}
-
-.Deadline {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 10px;
-  position: relative;
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.Date {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #495057;
-  background: #dee2e6;
-  padding: 10px 20px;
-  border-radius: 10px;
-}
-
-.Calendar {
-  border: 0;
-  outline: 0;
-  background: #f8f9fa;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #495057;
-  cursor: pointer;
-  transition: all 0.25s;
-}
-.Calendar:hover {
-  background: #dee2e6;
-  color: #212529;
 }/*# sourceMappingURL=AddTask.module.css.map */

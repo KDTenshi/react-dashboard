@@ -1,0 +1,71 @@
+.Wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(73, 80, 87, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.Body {
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.Title {
+  font-size: 25px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  color: #212529;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.Cancel {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  background: #dee2e6;
+  color: #495057;
+}
+.Cancel:hover {
+  background: #495057;
+  color: #dee2e6;
+}
+
+.Confirm {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  background: #dee2e6;
+  color: #495057;
+}
+.Confirm:hover {
+  background: #dd2c2f;
+  color: #f8f9fa;
+}/*# sourceMappingURL=ConfirmDelete.module.css.map */

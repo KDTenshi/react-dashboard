@@ -51,25 +51,3 @@
 .High {
   @include Priority(c.$RED);
 }
-
-.Date,
-.Expired {
-  @include BODY_3();
-
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 5px;
-
-  & span {
-    color: c.$DARK_GRAY;
-  }
-}
-
-.Date {
-  color: c.$DARK_GRAY;
-}
-
-.Expired {
-  color: c.$LIGHT_RED;
-}

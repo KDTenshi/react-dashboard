@@ -1,10 +1,13 @@
-import { useEffect, useState, type FC } from "react";
+import { useState, type FC } from "react";
 
 import style from "./Task.module.css";
 import { useAppDispatch } from "../../../app/store/appStore";
 import { deleteTask, editSelectedTask, unsetSelectedTask } from "../../../shared/store/boardSlice";
 import type { TTask } from "../../../shared/types/types";
-import { DateTimePicker } from "../../DateTimePicker";
+
+import { PriorityPicker } from "../../PriorityPicker";
+import { ConfirmDelete } from "../../ConfirmDelete";
+import { DateDisplay, DatePicker, Popup, Warning } from "../../../shared/ui";
 
 interface TaskProps {
   task: TTask;
@@ -20,41 +23,9 @@ const Task: FC<TaskProps> = ({ task }) => {
   const [priority, setPriority] = useState(task.priority);
   const [deadline, setDeadline] = useState(task.deadline);
 
-  const [isWarning, setIsWarning] = useState(false);
+  const [isTitleWarning, setIsTitleWarning] = useState(false);
   const [isDateWarning, setIsDateWarning] = useState(false);
   const [isPickerShown, setIsPickerShown] = useState(false);
-
-  useEffect(() => {
-    if (isWarning) {
-      setTimeout(() => {
-        setIsWarning(false);
-      }, 2000);
-    }
-  }, [isWarning]);
-
-  useEffect(() => {
-    if (isDateWarning) {
-      setTimeout(() => {
-        setIsDateWarning(false);
-      }, 2000);
-    }
-  }, [isDateWarning]);
-
-  const handleClick = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-
-    if (target.classList.contains(style.Wrapper)) dispatch(unsetSelectedTask());
-  };
-
-  const handlePopupClick = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-
-    if (target.classList.contains(style.Popup)) setConfirmDelete(false);
-  };
-
-  const handleButtonClick = () => {
-    dispatch(unsetSelectedTask());
-  };
 
   const handleDelete = () => {
     dispatch(deleteTask({ selectedTask: task }));
@@ -64,7 +35,7 @@ const Task: FC<TaskProps> = ({ task }) => {
     const newTitle = title.trim();
     const newDescription = description.trim();
 
-    if (!newTitle) setIsWarning(true);
+    if (!newTitle) setIsTitleWarning(true);
 
     if (task.date >= deadline) setIsDateWarning(true);
 
@@ -75,91 +46,59 @@ const Task: FC<TaskProps> = ({ task }) => {
   };
 
   return (
-    <div className={style.Wrapper} onClick={handleClick}>
-      {isPickerShown && (
-        <DateTimePicker setIsShown={setIsPickerShown} timestamp={deadline} setTimestamp={setDeadline} />
-      )}
-      <div className={style.Task}>
-        {confirmDelete && (
-          <div className={style.Popup} onClick={handlePopupClick}>
-            <div className={style.Body}>
-              <h3 className={style.Question}>Confirm delete?</h3>
-              <div className={style.Actions}>
-                <button className={style.Cancel} onClick={() => setConfirmDelete(false)}>
-                  Cancel
-                </button>
-                <button className={style.Confirm} onClick={handleDelete}>
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
+    <Popup hide={() => dispatch(unsetSelectedTask())}>
+      {isPickerShown && <DatePicker setIsShown={setIsPickerShown} timestamp={deadline} setTimestamp={setDeadline} />}
+      {confirmDelete && <ConfirmDelete handleDelete={handleDelete} hidePopup={() => setConfirmDelete(false)} />}
+      <button className={style.Delete} onClick={() => setConfirmDelete(true)}>
+        <span className="material-symbols-outlined">delete</span>Delete
+      </button>
+      <div className={style.Group}>
+        <input
+          type="text"
+          className={style.Input}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Task title..."
+        />
+        {isTitleWarning && (
+          <Warning text="Invalid title" isShown={isTitleWarning} hide={() => setIsTitleWarning(false)} />
         )}
-        <button className={style.Delete} onClick={() => setConfirmDelete(true)}>
-          <span className="material-symbols-outlined">delete</span>Delete
-        </button>
-        <div className={style.Heading}>
-          <div className={style.Title}>
-            <input
-              type="text"
-              className={style.Input}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Task title..."
-            />
-            {isWarning && <p className={style.Warning}>Enter valid task title</p>}
-          </div>
-        </div>
-        <div className={style.Divider}>
-          <p className={style.Label}>Description</p>
-        </div>
+      </div>
+      <div className={style.Group}>
+        <p className={style.Label}>Description</p>
         <textarea
           className={style.Description}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="No description..."
         ></textarea>
+      </div>
+      <div className={style.Group}>
         <p className={style.Label}>Priority</p>
-        <div className={style.Priorities}>
-          <button
-            className={priority === "low" ? [style.Low, style.Active].join(" ") : style.Low}
-            onClick={() => setPriority("low")}
-          >
-            Low
-          </button>
-          <button
-            className={priority === "moderate" ? [style.Moderate, style.Active].join(" ") : style.Moderate}
-            onClick={() => setPriority("moderate")}
-          >
-            Moderate
-          </button>
-          <button
-            className={priority === "high" ? [style.High, style.Active].join(" ") : style.High}
-            onClick={() => setPriority("high")}
-          >
-            High
-          </button>
+        <PriorityPicker activePriority={priority} setPriority={setPriority} />
+      </div>
+      <div className={style.Dates}>
+        <div className={style.Group}>
+          <p className={style.Label}>Created at</p>
+          <DateDisplay timestamp={task.date} />
         </div>
-        <p className={style.Label}>Created at</p>
-        <p className={style.Date}>{new Date(task.date).toLocaleString()}</p>
-        <p className={style.Label}>Deadline</p>
-        <div className={style.Deadline}>
-          <p className={style.Date}>{new Date(deadline).toLocaleString()}</p>
-          <button className={style.Calendar} onClick={() => setIsPickerShown(true)}>
-            <span className="material-symbols-outlined">calendar_clock</span>
-          </button>
-          {isDateWarning && <p className={style.Warning}>Invalid date</p>}
-        </div>
-        <div className={style.Buttons}>
-          <button className={style.Cancel} onClick={handleButtonClick}>
-            Cancel
-          </button>
-          <button className={style.Confirm} onClick={handleConfirm}>
-            Confirm
-          </button>
+        <div className={style.Group}>
+          <p className={style.Label}>Deadline</p>
+          <DateDisplay timestamp={deadline} setTimestamp={setDeadline} withPicker />
+          {isDateWarning && (
+            <Warning text="Invalid date" isShown={isDateWarning} hide={() => setIsDateWarning(false)} />
+          )}
         </div>
       </div>
-    </div>
+      <div className={style.Buttons}>
+        <button className={style.Cancel} onClick={() => dispatch(unsetSelectedTask())}>
+          Cancel
+        </button>
+        <button className={style.Confirm} onClick={handleConfirm}>
+          Confirm
+        </button>
+      </div>
+    </Popup>
   );
 };
 

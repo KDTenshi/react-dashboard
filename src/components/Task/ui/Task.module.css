@@ -1,33 +1,3 @@
-.Wrapper {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(73, 80, 87, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-
-.Task {
-  width: 50vw;
-  background: #f8f9fa;
-  border-radius: 25px;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  position: relative;
-}
-
-.Heading {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 15px;
-}
-
 .Title {
   width: 100%;
   position: relative;
@@ -38,51 +8,24 @@
   font-family: "Space Grotesk", sans-serif;
   font-weight: 600;
   color: #212529;
-  width: 75%;
+  width: 100%;
   background: #f8f9fa;
   border: 0;
   outline: 0;
 }
 
-.Warning {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #f8f9fa;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translateY(calc(100% + 15px));
-  background: #dd2c2f;
-  width: -moz-max-content;
-  width: max-content;
-  padding: 10px 15px;
-  border-radius: 10px;
-}
-.Warning:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 25%;
-  width: 15px;
-  height: 15px;
-  background: #dd2c2f;
-  transform: rotate(45deg) translateY(-50%);
+.Group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 
-.Edit {
-  background: transparent;
-  border: 0;
-  outline: 0;
-  color: #495057;
-  cursor: pointer;
-  transition: all 0.25s;
-  padding: 5px;
-  border-radius: 5px;
-}
-.Edit:hover {
-  background: #dee2e6;
-  color: #212529;
+.Dates {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
 }
 
 .Label {
@@ -96,81 +39,14 @@
   font-size: 16px;
   font-family: "Mulish", sans-serif;
   font-weight: 400;
-  padding: 0 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
   height: 15vh;
   color: #495057;
   resize: none;
-  background: #f8f9fa;
+  background: #dee2e6;
   border: 0;
   outline: 0;
-}
-
-.Priorities {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  padding-left: 10px;
-  gap: 10px;
-}
-
-.Low {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #212529;
-  background: #f8f9fa;
-  border: 1px solid #2dc653;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-}
-.Low.Active {
-  background: #2dc653 !important;
-}
-.Low:hover {
-  background: rgba(45, 198, 83, 0.5);
-}
-
-.Moderate {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #212529;
-  background: #f8f9fa;
-  border: 1px solid #ffd819;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-}
-.Moderate.Active {
-  background: #ffd819 !important;
-}
-.Moderate:hover {
-  background: rgba(255, 216, 25, 0.5);
-}
-
-.High {
-  font-size: 16px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #212529;
-  background: #f8f9fa;
-  border: 1px solid #dd2c2f;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-}
-.High.Active {
-  background: #dd2c2f !important;
-}
-.High:hover {
-  background: rgba(221, 44, 47, 0.5);
 }
 
 .Buttons {
@@ -222,9 +98,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  position: absolute;
-  top: 15px;
-  right: 25px;
+  align-self: flex-end;
   color: #495057;
   background: #dee2e6;
   outline: 0;

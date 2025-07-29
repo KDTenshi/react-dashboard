@@ -1,0 +1,28 @@
+@use "../../style/colors" as c;
+@import "../../style/mixins";
+
+.Warning {
+  @include BODY_2();
+
+  color: c.$WHITE;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  background: c.$RED;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: 10px;
+  z-index: 5;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 15px;
+    height: 15px;
+    background: c.$RED;
+    transform: rotate(45deg) translateY(-50%);
+  }
+}

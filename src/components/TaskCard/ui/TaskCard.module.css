@@ -60,27 +60,4 @@
   padding: 5px 10px;
   color: #212529;
   border-radius: 10px;
-}
-
-.Date,
-.Expired {
-  font-size: 14px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 5px;
-}
-.Date span,
-.Expired span {
-  color: #495057;
-}
-
-.Date {
-  color: #495057;
-}
-
-.Expired {
-  color: #e66063;
 }/*# sourceMappingURL=TaskCard.module.css.map */

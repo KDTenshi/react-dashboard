@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 
-import style from "./DateTimePicker.module.css";
+import style from "./DatePicker.module.css";
 
 const months = [
   "January",
@@ -19,13 +19,13 @@ const months = [
 
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-interface DateTimePickerProps {
+interface DatePickerProps {
   setIsShown: (arg: boolean) => void;
   timestamp: number;
   setTimestamp: (arg: number) => void;
 }
 
-const DateTimePicker: FC<DateTimePickerProps> = ({ setIsShown, timestamp, setTimestamp }) => {
+const DatePicker: FC<DatePickerProps> = ({ setIsShown, timestamp, setTimestamp }) => {
   const date = new Date(timestamp);
 
   const hours = date.getHours();
@@ -150,4 +150,4 @@ const DateTimePicker: FC<DateTimePickerProps> = ({ setIsShown, timestamp, setTim
   );
 };
 
-export default DateTimePicker;
+export default DatePicker;

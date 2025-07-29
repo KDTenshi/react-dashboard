@@ -1,36 +1,6 @@
 @use "../../../shared/style/colors" as c;
 @import "../../../shared/style/mixins";
 
-.Wrapper {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba($color: c.$DARK_GRAY, $alpha: 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(5px);
-}
-
-.Task {
-  width: 50vw;
-  // height: 75vh;
-  background: c.$WHITE;
-  border-radius: 25px;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  position: relative;
-}
-
-.Heading {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 15px;
-}
-
 .Title {
   width: 100%;
   position: relative;
@@ -40,51 +10,24 @@
   @include HEADING_3();
 
   color: c.$BLACK;
-  width: 75%;
+  width: 100%;
   background: c.$WHITE;
   border: 0;
   outline: 0;
 }
 
-.Warning {
-  @include BODY_2();
-
-  color: c.$WHITE;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translateY(calc(100% + 15px));
-  background: c.$RED;
-  width: max-content;
-  padding: 10px 15px;
-  border-radius: 10px;
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 25%;
-    width: 15px;
-    height: 15px;
-    background: c.$RED;
-    transform: rotate(45deg) translateY(-50%);
-  }
+.Group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 
-.Edit {
-  background: transparent;
-  border: 0;
-  outline: 0;
-  color: c.$DARK_GRAY;
-  cursor: pointer;
-  transition: all 0.25s;
-  padding: 5px;
-  border-radius: 5px;
-
-  &:hover {
-    background: c.$LIGHT_GRAY;
-    color: c.$BLACK;
-  }
+.Dates {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
 }
 
 .Label {
@@ -96,54 +39,14 @@
 .Description {
   @include BODY_2();
 
-  padding: 0 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
   height: 15vh;
   color: c.$DARK_GRAY;
   resize: none;
-  background: c.$WHITE;
+  background: c.$LIGHT_GRAY;
   border: 0;
   outline: 0;
-}
-
-.Priorities {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  padding-left: 10px;
-  gap: 10px;
-}
-
-@mixin Priority($color) {
-  @include BODY_2();
-
-  color: c.$BLACK;
-  background: c.$WHITE;
-  border: 1px solid $color;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-
-  &.Active {
-    background: $color !important;
-  }
-
-  &:hover {
-    background: rgba($color: $color, $alpha: 0.5);
-  }
-}
-
-.Low {
-  @include Priority(c.$GREEN);
-}
-
-.Moderate {
-  @include Priority(c.$YELLOW);
-}
-
-.High {
-  @include Priority(c.$RED);
 }
 
 .Buttons {
@@ -193,9 +96,10 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  position: absolute;
-  top: 15px;
-  right: 25px;
+  // position: absolute;
+  // top: 15px;
+  // right: 25px;
+  align-self: flex-end;
   color: c.$DARK_GRAY;
   background: c.$LIGHT_GRAY;
   outline: 0;

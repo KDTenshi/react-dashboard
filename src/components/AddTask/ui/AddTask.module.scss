@@ -1,27 +1,6 @@
 @use "../../../shared/style/colors" as c;
 @import "../../../shared/style/mixins";
 
-.Wrapper {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba($color: c.$DARK_GRAY, $alpha: 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(5px);
-}
-
-.Add {
-  width: 50vw;
-  background: c.$WHITE;
-  border-radius: 25px;
-  padding: 25px 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
 .Title {
   @include HEADING_2();
 
@@ -31,18 +10,21 @@
 .Form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   padding: 0 15px;
+}
+
+.Group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 
 .Label {
   @include BODY_1();
 
   color: c.$DARK_GRAY;
-}
-
-.WithWarning {
-  position: relative;
 }
 
 .Input {
@@ -57,31 +39,6 @@
   border-radius: 10px;
 }
 
-.Warning {
-  @include BODY_2();
-
-  color: c.$WHITE;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateY(calc(-100% - 15px));
-  background: c.$RED;
-  width: max-content;
-  padding: 10px 15px;
-  border-radius: 10px;
-
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 25%;
-    width: 15px;
-    height: 15px;
-    background: c.$RED;
-    transform: rotate(45deg) translateY(50%);
-  }
-}
-
 .Textarea {
   @include BODY_2();
 
@@ -94,47 +51,6 @@
   padding: 10px 20px;
   border-radius: 10px;
   resize: none;
-}
-
-.Priorities {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  padding-left: 10px;
-  gap: 10px;
-}
-
-@mixin Priority($color) {
-  @include BODY_2();
-
-  color: c.$BLACK;
-  background: c.$WHITE;
-  border: 1px solid $color;
-  outline: 0;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: all 0.25s;
-
-  &.Active {
-    background: $color !important;
-  }
-
-  &:hover {
-    background: rgba($color: $color, $alpha: 0.5);
-  }
-}
-
-.Low {
-  @include Priority(c.$GREEN);
-}
-
-.Moderate {
-  @include Priority(c.$YELLOW);
-}
-
-.High {
-  @include Priority(c.$RED);
 }
 
 .Buttons {
@@ -174,39 +90,5 @@
 
   &:hover {
     box-shadow: 0 0 10px c.$GRAY;
-  }
-}
-
-.Deadline {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 10px;
-  position: relative;
-  width: max-content;
-}
-
-.Date {
-  @include BODY_2();
-
-  color: c.$DARK_GRAY;
-  background: c.$LIGHT_GRAY;
-  padding: 10px 20px;
-  border-radius: 10px;
-}
-
-.Calendar {
-  border: 0;
-  outline: 0;
-  background: c.$WHITE;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: c.$DARK_GRAY;
-  cursor: pointer;
-  transition: all 0.25s;
-
-  &:hover {
-    background: c.$LIGHT_GRAY;
-    color: c.$BLACK;
   }
 }
