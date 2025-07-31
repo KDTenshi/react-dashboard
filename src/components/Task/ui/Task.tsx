@@ -7,7 +7,7 @@ import type { TTask } from "../../../shared/types/types";
 
 import { PriorityPicker } from "../../PriorityPicker";
 import { ConfirmDelete } from "../../ConfirmDelete";
-import { DateDisplay, DatePicker, Popup, Warning } from "../../../shared/ui";
+import { DateDisplay, Popup, Warning } from "../../../shared/ui";
 
 interface TaskProps {
   task: TTask;
@@ -25,7 +25,6 @@ const Task: FC<TaskProps> = ({ task }) => {
 
   const [isTitleWarning, setIsTitleWarning] = useState(false);
   const [isDateWarning, setIsDateWarning] = useState(false);
-  const [isPickerShown, setIsPickerShown] = useState(false);
 
   const handleDelete = () => {
     dispatch(deleteTask({ selectedTask: task }));
@@ -47,7 +46,6 @@ const Task: FC<TaskProps> = ({ task }) => {
 
   return (
     <Popup hide={() => dispatch(unsetSelectedTask())}>
-      {isPickerShown && <DatePicker setIsShown={setIsPickerShown} timestamp={deadline} setTimestamp={setDeadline} />}
       {confirmDelete && <ConfirmDelete handleDelete={handleDelete} hidePopup={() => setConfirmDelete(false)} />}
       <button className={style.Delete} onClick={() => setConfirmDelete(true)}>
         <span className="material-symbols-outlined">delete</span>Delete

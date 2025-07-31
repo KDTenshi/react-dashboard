@@ -3,11 +3,11 @@ import type { FC } from "react";
 import { Header } from "../../components/Header";
 import { SideBar } from "../../components/SideBar";
 import { Board } from "../../components/Board";
-import { Task } from "../../components/Task";
-import { AddTask } from "../../components/AddTask";
 import { useAppSelector } from "../store/appStore";
 
 import "../style/App.css";
+import { Task } from "../../components/Task";
+import { AddTask } from "../../components/AddTask";
 
 const App: FC = () => {
   const selectedTask = useAppSelector((state) => state.board.selectedTask);

@@ -9,53 +9,30 @@ const Board: FC = () => {
   const dispatch = useAppDispatch();
 
   const [title, setTitle] = useState("Project title");
-
-  const [isEdit, setIsEdit] = useState(false);
-  const [editValue, setEditValue] = useState(title);
+  const [editTitle, setEditTitle] = useState(title);
 
   const handleEdit = () => {
-    setIsEdit(false);
-
-    const newTitle = editValue.trim();
+    const newTitle = editTitle.trim();
 
     if (newTitle) {
       setTitle(newTitle);
-      setEditValue(newTitle);
+      setEditTitle(newTitle);
     } else {
-      setEditValue(title);
+      setEditTitle(title);
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    handleEdit();
   };
 
   return (
     <div className={style.Board}>
       <div className={style.Heading}>
-        {isEdit && (
-          <form className={style.Edit} onSubmit={handleSubmit}>
-            <input
-              type="text"
-              className={style.Input}
-              placeholder="Project title..."
-              value={editValue}
-              onChange={(e) => setEditValue(e.target.value)}
-              autoFocus
-              onBlur={handleEdit}
-            />
-          </form>
-        )}
-        {!isEdit && (
-          <>
-            <h1 className={style.Title}>{title}</h1>
-            <button className={style.Button} onClick={() => setIsEdit(true)}>
-              <span className="material-symbols-outlined">edit</span>
-            </button>
-          </>
-        )}
+        <input
+          type="text"
+          className={style.Input}
+          placeholder="Project title..."
+          value={editTitle}
+          onChange={(e) => setEditTitle(e.target.value)}
+          onBlur={handleEdit}
+        />
       </div>
       <div className={style.Actions}>
         <button className={style.Button} onClick={() => dispatch(setIsAdding(true))}>
