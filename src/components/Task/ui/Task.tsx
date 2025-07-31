@@ -7,7 +7,7 @@ import type { TTask } from "../../../shared/types/types";
 
 import { PriorityPicker } from "../../PriorityPicker";
 import { ConfirmDelete } from "../../ConfirmDelete";
-import { DateDisplay, Popup, Warning } from "../../../shared/ui";
+import { DateDisplay, Popup, WithWarning } from "../../../shared/ui";
 
 interface TaskProps {
   task: TTask;
@@ -50,7 +50,7 @@ const Task: FC<TaskProps> = ({ task }) => {
       <button className={style.Delete} onClick={() => setConfirmDelete(true)}>
         <span className="material-symbols-outlined">delete</span>Delete
       </button>
-      <div className={style.Group}>
+      <WithWarning message="Invalid title" isShown={isTitleWarning} hideWarning={() => setIsTitleWarning(false)}>
         <input
           type="text"
           className={style.Input}
@@ -58,10 +58,7 @@ const Task: FC<TaskProps> = ({ task }) => {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Task title..."
         />
-        {isTitleWarning && (
-          <Warning text="Invalid title" isShown={isTitleWarning} hide={() => setIsTitleWarning(false)} />
-        )}
-      </div>
+      </WithWarning>
       <div className={style.Group}>
         <p className={style.Label}>Description</p>
         <textarea
@@ -82,10 +79,9 @@ const Task: FC<TaskProps> = ({ task }) => {
         </div>
         <div className={style.Group}>
           <p className={style.Label}>Deadline</p>
-          <DateDisplay timestamp={deadline} setTimestamp={setDeadline} withPicker />
-          {isDateWarning && (
-            <Warning text="Invalid date" isShown={isDateWarning} hide={() => setIsDateWarning(false)} />
-          )}
+          <WithWarning message="Invalid date" isShown={isDateWarning} hideWarning={() => setIsDateWarning(false)}>
+            <DateDisplay timestamp={deadline} setTimestamp={setDeadline} withPicker />
+          </WithWarning>
         </div>
       </div>
       <div className={style.Buttons}>
