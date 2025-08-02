@@ -4,7 +4,7 @@ import style from "./TaskCard.module.css";
 import type { TTask, TTaskPriority } from "../../../shared/types/types";
 import { useAppDispatch } from "../../../app/store/appStore";
 import { setSelectedTask } from "../../../shared/store/boardSlice";
-import { DateDisplay } from "../../../shared/ui";
+import { getDateString } from "../../../shared/utils/getDateString";
 
 interface TaskCardProps {
   task: TTask;
@@ -27,7 +27,10 @@ const TaskCard: FC<TaskCardProps> = ({ task }) => {
     <div className={style.Card} onClick={handleClick}>
       <h4 className={style.Title}>{task.title}</h4>
       <div className={style.Info}>
-        <DateDisplay timestamp={task.deadline} format="short" />
+        <p className={style.Date}>
+          <span className="material-symbols-outlined">calendar_clock</span>
+          {getDateString(task.deadline)}
+        </p>
         <p className={priorityStyles[task.priority]}>{task.priority}</p>
       </div>
     </div>

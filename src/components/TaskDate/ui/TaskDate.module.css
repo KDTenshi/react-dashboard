@@ -1,48 +1,53 @@
-.Container {
+.Wrapper {
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 10px;
-  position: relative;
+  gap: 15px;
 }
 
-.Long {
-  font-size: 16px;
+.Block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Label {
+  font-size: 20px;
   font-family: "Mulish", sans-serif;
   font-weight: 400;
   color: #495057;
-  background: #dee2e6;
+}
+
+.Date {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
   padding: 10px 20px;
+  color: #495057;
+  background: #dee2e6;
   border-radius: 10px;
   width: -moz-max-content;
   width: max-content;
 }
 
-.Short {
-  font-size: 14px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
+.Deadline {
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 5px;
-  color: #495057;
-}
-.Short span {
-  color: #495057;
+  gap: 10px;
 }
 
 .Button {
   border: 0;
   outline: 0;
   background: #f8f9fa;
-  padding: 5px 10px;
+  padding: 5px;
   border-radius: 5px;
-  color: #495057;
   cursor: pointer;
+  color: #495057;
   transition: all 0.25s;
 }
 .Button:hover {
   background: #dee2e6;
   color: #212529;
-}/*# sourceMappingURL=DateDisplay.module.css.map */
+}/*# sourceMappingURL=TaskDate.module.css.map */

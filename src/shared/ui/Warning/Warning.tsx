@@ -3,19 +3,21 @@ import { useEffect, type FC } from "react";
 import style from "./Warning.module.css";
 
 interface WarningProps {
-  text?: string;
+  message: string;
   isShown: boolean;
-  hide: () => void;
+  hideWarning: () => void;
 }
 
-const Warning: FC<WarningProps> = ({ text = "Warning!", isShown, hide }) => {
+const Warning: FC<WarningProps> = ({ message, isShown, hideWarning }) => {
   useEffect(() => {
-    if (isShown) {
-      setTimeout(() => hide(), 2000);
-    }
-  }, [isShown, hide]);
+    const timeout = setTimeout(() => {
+      if (isShown) hideWarning();
+    }, 2000);
 
-  return <div className={style.Warning}>{text}</div>;
+    return () => clearTimeout(timeout);
+  });
+
+  return <div className={style.Warning}>{message}</div>;
 };
 
 export default Warning;

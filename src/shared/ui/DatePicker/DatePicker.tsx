@@ -20,12 +20,12 @@ const months = [
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 interface DatePickerProps {
-  setIsShown: (arg: boolean) => void;
+  hidePicker: () => void;
   timestamp: number;
   setTimestamp: (arg: number) => void;
 }
 
-const DatePicker: FC<DatePickerProps> = ({ setIsShown, timestamp, setTimestamp }) => {
+const DatePicker: FC<DatePickerProps> = ({ hidePicker, timestamp, setTimestamp }) => {
   const date = new Date(timestamp);
 
   const hours = date.getHours();
@@ -81,7 +81,10 @@ const DatePicker: FC<DatePickerProps> = ({ setIsShown, timestamp, setTimestamp }
     setSelectedHours(newHours);
     setSelectedMinutes(newMinutes);
 
-    const newDate = new Date(selectedYear, selectedMonth, day, newHours, newMinutes);
+    console.log(selectedYear, selectedMonth, selectedDay, newHours, newMinutes);
+
+    const newDate = new Date(selectedYear, selectedMonth, selectedDay, newHours, newMinutes);
+
     setTimestamp(newDate.getTime());
   };
 
@@ -93,7 +96,7 @@ const DatePicker: FC<DatePickerProps> = ({ setIsShown, timestamp, setTimestamp }
     const target = e.target as HTMLElement;
 
     if (target.classList.contains(style.Wrapper)) {
-      setIsShown(false);
+      hidePicker();
 
       const newDate = new Date(selectedYear, selectedMonth, selectedDay, selectedHours, selectedMinutes);
       setTimestamp(newDate.getTime());

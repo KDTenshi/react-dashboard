@@ -17,12 +17,12 @@ const Header: FC = () => {
           </button>
           <Logo />
         </div>
-        <form className={style.SearchBar}>
+        {/* <form className={style.SearchBar}>
           <input type="text" className={style.Input} placeholder="Search..." />
           <button className={style.Search}>
             <span className="material-symbols-outlined">search</span>
           </button>
-        </form>
+        </form> */}
       </div>
       <button className={style.User}>
         <div className={style.Text}>

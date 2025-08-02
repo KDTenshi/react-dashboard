@@ -26,6 +26,20 @@
   justify-content: space-between;
 }
 
+.Date {
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
+  color: #495057;
+}
+.Date span {
+  color: #495057;
+}
+
 .Low {
   font-size: 12px;
   font-family: "Mulish", sans-serif;

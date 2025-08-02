@@ -1,0 +1,23 @@
+@use "../../style/colors" as c;
+@import "../../style/mixins";
+
+.Label {
+  @include BODY_1();
+
+  color: c.$DARK_GRAY;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Input {
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: c.$LIGHT_GRAY;
+  padding: 10px 20px;
+  border-radius: 10px;
+}

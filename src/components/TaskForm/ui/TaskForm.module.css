@@ -1,0 +1,86 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Label {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+}
+
+.Input,
+.Textarea {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: #dee2e6;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.Textarea {
+  resize: none;
+  height: 15vh;
+}
+
+.Dates {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
+}
+
+.Date {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 25px;
+}
+
+.Confirm {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  background: #495057;
+  color: #dee2e6;
+}
+.Confirm:hover {
+  background: #adb5bd;
+  color: #495057;
+}
+
+.Cancel {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: #495057;
+  background: #dee2e6;
+}
+.Cancel:hover {
+  background: #adb5bd;
+}/*# sourceMappingURL=TaskForm.module.css.map */

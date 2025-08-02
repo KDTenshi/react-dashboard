@@ -1,46 +1,50 @@
-@use "../../style/colors" as c;
-@import "../../style/mixins";
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
 
-.Container {
+.Wrapper {
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 10px;
-  position: relative;
+  gap: 15px;
 }
 
-.Long {
-  @include BODY_2();
+.Block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Label {
+  @include BODY_1();
 
   color: c.$DARK_GRAY;
-  background: c.$LIGHT_GRAY;
+}
+
+.Date {
+  @include BODY_2();
+
   padding: 10px 20px;
+  color: c.$DARK_GRAY;
+  background: c.$LIGHT_GRAY;
   border-radius: 10px;
   width: max-content;
 }
 
-.Short {
-  @include BODY_3();
-
+.Deadline {
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 5px;
-  color: c.$DARK_GRAY;
-
-  & span {
-    color: c.$DARK_GRAY;
-  }
+  gap: 10px;
 }
 
 .Button {
   border: 0;
   outline: 0;
   background: c.$WHITE;
-  padding: 5px 10px;
+  padding: 5px;
   border-radius: 5px;
-  color: c.$DARK_GRAY;
   cursor: pointer;
+  color: c.$DARK_GRAY;
   transition: all 0.25s;
 
   &:hover {

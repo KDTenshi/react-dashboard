@@ -2,12 +2,12 @@ import { useState, type FC } from "react";
 
 import style from "./Task.module.css";
 import { useAppDispatch } from "../../../app/store/appStore";
-import { deleteTask, editSelectedTask, unsetSelectedTask } from "../../../shared/store/boardSlice";
+import { deleteTask, unsetSelectedTask } from "../../../shared/store/boardSlice";
 import type { TTask } from "../../../shared/types/types";
 
-import { PriorityPicker } from "../../PriorityPicker";
 import { ConfirmDelete } from "../../ConfirmDelete";
-import { DateDisplay, Popup, WithWarning } from "../../../shared/ui";
+import { Popup } from "../../../shared/ui";
+import { TaskForm } from "../../TaskForm";
 
 interface TaskProps {
   task: TTask;
@@ -18,30 +18,8 @@ const Task: FC<TaskProps> = ({ task }) => {
 
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const [title, setTitle] = useState(task.title);
-  const [description, setDescription] = useState(task.description);
-  const [priority, setPriority] = useState(task.priority);
-  const [deadline, setDeadline] = useState(task.deadline);
-
-  const [isTitleWarning, setIsTitleWarning] = useState(false);
-  const [isDateWarning, setIsDateWarning] = useState(false);
-
   const handleDelete = () => {
     dispatch(deleteTask({ selectedTask: task }));
-  };
-
-  const handleConfirm = () => {
-    const newTitle = title.trim();
-    const newDescription = description.trim();
-
-    if (!newTitle) setIsTitleWarning(true);
-
-    if (task.date >= deadline) setIsDateWarning(true);
-
-    if (newTitle && task.date < deadline) {
-      dispatch(editSelectedTask({ title: newTitle, description: newDescription, priority, deadline }));
-      dispatch(unsetSelectedTask());
-    }
   };
 
   return (
@@ -50,48 +28,7 @@ const Task: FC<TaskProps> = ({ task }) => {
       <button className={style.Delete} onClick={() => setConfirmDelete(true)}>
         <span className="material-symbols-outlined">delete</span>Delete
       </button>
-      <WithWarning message="Invalid title" isShown={isTitleWarning} hideWarning={() => setIsTitleWarning(false)}>
-        <input
-          type="text"
-          className={style.Input}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Task title..."
-        />
-      </WithWarning>
-      <div className={style.Group}>
-        <p className={style.Label}>Description</p>
-        <textarea
-          className={style.Description}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="No description..."
-        ></textarea>
-      </div>
-      <div className={style.Group}>
-        <p className={style.Label}>Priority</p>
-        <PriorityPicker activePriority={priority} setPriority={setPriority} />
-      </div>
-      <div className={style.Dates}>
-        <div className={style.Group}>
-          <p className={style.Label}>Created at</p>
-          <DateDisplay timestamp={task.date} />
-        </div>
-        <div className={style.Group}>
-          <p className={style.Label}>Deadline</p>
-          <WithWarning message="Invalid date" isShown={isDateWarning} hideWarning={() => setIsDateWarning(false)}>
-            <DateDisplay timestamp={deadline} setTimestamp={setDeadline} withPicker />
-          </WithWarning>
-        </div>
-      </div>
-      <div className={style.Buttons}>
-        <button className={style.Cancel} onClick={() => dispatch(unsetSelectedTask())}>
-          Cancel
-        </button>
-        <button className={style.Confirm} onClick={handleConfirm}>
-          Confirm
-        </button>
-      </div>
+      <TaskForm task={task} />
     </Popup>
   );
 };

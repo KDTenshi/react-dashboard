@@ -1,0 +1,86 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Label {
+  @include BODY_1();
+
+  color: c.$DARK_GRAY;
+}
+
+.Input,
+.Textarea {
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: c.$LIGHT_GRAY;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.Textarea {
+  resize: none;
+  height: 15vh;
+}
+
+.Dates {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
+}
+
+.Date {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 25px;
+}
+
+@mixin Button {
+  @include BODY_1();
+
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.Confirm {
+  @include Button();
+
+  background: c.$DARK_GRAY;
+  color: c.$LIGHT_GRAY;
+
+  &:hover {
+    background: c.$GRAY;
+    color: c.$DARK_GRAY;
+  }
+}
+
+.Cancel {
+  @include Button();
+
+  color: c.$DARK_GRAY;
+  background: c.$LIGHT_GRAY;
+
+  &:hover {
+    background: c.$GRAY;
+  }
+}
