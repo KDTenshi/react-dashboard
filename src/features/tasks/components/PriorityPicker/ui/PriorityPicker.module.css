@@ -1,0 +1,19 @@
+.Picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Label {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}/*# sourceMappingURL=PriorityPicker.module.css.map */

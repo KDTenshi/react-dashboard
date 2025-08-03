@@ -1,0 +1,8 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Heading {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}

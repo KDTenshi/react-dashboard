@@ -1,0 +1,12 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 25px;
+}/*# sourceMappingURL=TaskForm.module.css.map */

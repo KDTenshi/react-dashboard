@@ -13,5 +13,5 @@ export type TTask = {
 
 export type TColumn = {
   title: TColumnType;
-  tasks: TTask[];
+  taskIDs: string[];
 };

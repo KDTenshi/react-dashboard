@@ -1,0 +1,39 @@
+@use "../../style/colors" as c;
+@import "../../style/mixins";
+
+@mixin Priority($color) {
+  @include BODY_2();
+
+  color: c.$BLACK;
+  background: c.$WHITE;
+  border: 1px solid $color;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  &.Active {
+    background: $color !important;
+  }
+
+  &:hover {
+    background: rgba($color: $color, $alpha: 0.5);
+  }
+}
+
+.Low {
+  @include Priority(c.$GREEN);
+}
+
+.Moderate {
+  @include Priority(c.$YELLOW);
+}
+
+.High {
+  @include Priority(c.$RED);
+}

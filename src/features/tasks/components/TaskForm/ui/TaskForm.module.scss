@@ -1,0 +1,15 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 25px;
+}

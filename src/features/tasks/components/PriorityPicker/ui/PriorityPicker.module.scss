@@ -1,0 +1,21 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Label {
+  @include BODY_1();
+
+  color: c.$DARK_GRAY;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}

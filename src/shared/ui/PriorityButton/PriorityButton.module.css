@@ -1,0 +1,68 @@
+.Low {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #212529;
+  background: #f8f9fa;
+  border: 1px solid #2dc653;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+.Low::first-letter {
+  text-transform: uppercase;
+}
+.Low.Active {
+  background: #2dc653 !important;
+}
+.Low:hover {
+  background: rgba(45, 198, 83, 0.5);
+}
+
+.Moderate {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #212529;
+  background: #f8f9fa;
+  border: 1px solid #ffd819;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+.Moderate::first-letter {
+  text-transform: uppercase;
+}
+.Moderate.Active {
+  background: #ffd819 !important;
+}
+.Moderate:hover {
+  background: rgba(255, 216, 25, 0.5);
+}
+
+.High {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #212529;
+  background: #f8f9fa;
+  border: 1px solid #dd2c2f;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+.High::first-letter {
+  text-transform: uppercase;
+}
+.High.Active {
+  background: #dd2c2f !important;
+}
+.High:hover {
+  background: rgba(221, 44, 47, 0.5);
+}/*# sourceMappingURL=PriorityButton.module.css.map */

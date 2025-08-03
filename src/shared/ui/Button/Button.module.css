@@ -1,0 +1,88 @@
+.Light {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: -moz-max-content;
+  width: max-content;
+  background: #dee2e6;
+  color: #495057;
+}
+.Light:hover {
+  background: #adb5bd;
+}
+
+.Dark {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: -moz-max-content;
+  width: max-content;
+  background: #495057;
+  color: #dee2e6;
+}
+.Dark:hover {
+  background: #adb5bd;
+  color: #495057;
+}
+
+.Red {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: -moz-max-content;
+  width: max-content;
+  background: #dee2e6;
+  color: #495057;
+}
+.Red:hover {
+  background: #dd2c2f;
+  color: #f8f9fa;
+}
+
+.Big {
+  font-size: 25px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  padding: 15px 35px;
+  border-radius: 15px;
+  gap: 15px;
+}
+.Big span {
+  font-size: 30px;
+}
+
+.Medium {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  padding: 10px 20px;
+  border-radius: 10px;
+  gap: 10px;
+}
+.Medium span {
+  font-size: 25px;
+}
+
+.Small {
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 5px;
+  gap: 5px;
+}
+.Small span {
+  font-size: 20px;
+}/*# sourceMappingURL=Button.module.css.map */

@@ -1,0 +1,72 @@
+@use "../../../style/colors" as c;
+@import "../../../style/mixins";
+
+.Wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba($color: c.$DARK_GRAY, $alpha: 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.Body {
+  background: c.$WHITE;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.Title {
+  @include HEADING_3();
+
+  color: c.$BLACK;
+}
+
+.Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+@mixin Button {
+  @include BODY_1();
+
+  outline: 0;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.Cancel {
+  @include Button();
+
+  background: c.$LIGHT_GRAY;
+  color: c.$DARK_GRAY;
+
+  &:hover {
+    background: c.$DARK_GRAY;
+    color: c.$LIGHT_GRAY;
+  }
+}
+
+.Confirm {
+  @include Button();
+
+  background: c.$LIGHT_GRAY;
+  color: c.$DARK_GRAY;
+
+  &:hover {
+    background: c.$RED;
+    color: c.$WHITE;
+  }
+}

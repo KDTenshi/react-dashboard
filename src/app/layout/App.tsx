@@ -1,17 +1,17 @@
 import type { FC } from "react";
 
-import { Header } from "../../components/Header";
-import { SideBar } from "../../components/SideBar";
-import { Board } from "../../components/Board";
 import { useAppSelector } from "../store/appStore";
 
 import "../style/App.css";
-import { Task } from "../../components/Task";
-import { AddTask } from "../../components/AddTask";
+import { Header } from "./components/Header";
+import { SideBar } from "./components/SideBar";
+import { Board } from "../../features/board/components/Board";
+import { Task } from "../../features/tasks/components/Task";
+import { AddTask } from "../../features/tasks/components/AddTask";
 
 const App: FC = () => {
-  const selectedTask = useAppSelector((state) => state.board.selectedTask);
-  const isAdding = useAppSelector((state) => state.board.isAdding);
+  const selectedTask = useAppSelector((state) => state.tasks.selectedTask);
+  const isAddFormShown = useAppSelector((state) => state.ui.isAddTaskFormShown);
 
   return (
     <div className="App">
@@ -21,7 +21,7 @@ const App: FC = () => {
         <Board />
       </div>
       {selectedTask && <Task task={selectedTask} />}
-      {isAdding && <AddTask />}
+      {isAddFormShown && <AddTask />}
     </div>
   );
 };

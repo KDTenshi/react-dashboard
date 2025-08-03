@@ -1,0 +1,84 @@
+@use "../../style/colors" as c;
+@import "../../style/mixins";
+
+@mixin Button {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+
+.Light {
+  @include Button();
+
+  background: c.$LIGHT_GRAY;
+  color: c.$DARK_GRAY;
+
+  &:hover {
+    background: c.$GRAY;
+  }
+}
+
+.Dark {
+  @include Button();
+
+  background: c.$DARK_GRAY;
+  color: c.$LIGHT_GRAY;
+
+  &:hover {
+    background: c.$GRAY;
+    color: c.$DARK_GRAY;
+  }
+}
+
+.Red {
+  @include Button();
+
+  background: c.$LIGHT_GRAY;
+  color: c.$DARK_GRAY;
+
+  &:hover {
+    background: c.$RED;
+    color: c.$WHITE;
+  }
+}
+
+.Big {
+  @include HEADING_3();
+
+  padding: 15px 35px;
+  border-radius: 15px;
+  gap: 15px;
+
+  & span {
+    font-size: 30px;
+  }
+}
+
+.Medium {
+  @include BODY_1();
+
+  padding: 10px 20px;
+  border-radius: 10px;
+  gap: 10px;
+
+  & span {
+    font-size: 25px;
+  }
+}
+
+.Small {
+  @include BODY_3();
+
+  padding: 5px 10px;
+  border-radius: 5px;
+  gap: 5px;
+
+  & span {
+    font-size: 20px;
+  }
+}
