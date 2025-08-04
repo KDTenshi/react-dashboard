@@ -1,8 +1,8 @@
 import type { AppThunk } from "../../app/store/appStore";
-import type { TTaskPriority } from "../../shared/types/types";
+import type { TColumnType, TTaskPriority } from "../../shared/types/types";
 import { createNewTask } from "../../shared/utils/createNewTask";
-import { addTaskToColumn, deleteTaskFromColumn } from "../board/boardSlice";
-import { addTask, deleteSelectedTask } from "./tasksSlice";
+import { addTaskToColumn, deleteTaskFromColumn, moveTaskToColumn } from "../board/boardSlice";
+import { addTask, changeTaskColumn, deleteSelectedTask } from "./tasksSlice";
 
 export const createTask = (title: string, description: string, deadline: number, priority: TTaskPriority): AppThunk => {
   return (dispatch) => {
@@ -22,5 +22,16 @@ export const deleteTask = (): AppThunk => {
 
     dispatch(deleteSelectedTask());
     dispatch(deleteTaskFromColumn({ column: selectedTask.column, taskID: selectedTask.id }));
+  };
+};
+
+export const moveTask = (column: TColumnType, taskID: string): AppThunk => {
+  return (dispatch, getState) => {
+    const state = getState();
+
+    const columnFrom = state.tasks.list[taskID].column;
+
+    dispatch(changeTaskColumn({ taskID, column }));
+    dispatch(moveTaskToColumn({ taskID, to: column, from: columnFrom }));
   };
 };

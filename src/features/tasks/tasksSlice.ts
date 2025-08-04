@@ -1,20 +1,27 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { TTask, TTaskPriority } from "../../shared/types/types";
+import type { TColumnType, TTask, TTaskPriority } from "../../shared/types/types";
 
 type TasksState = {
   list: { [key: string]: TTask };
   selectedTask: TTask | null;
+  draggingTaskID: string | null;
 };
 
 const initialState: TasksState = {
   list: {},
   selectedTask: null,
+  draggingTaskID: null,
 };
 
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
+    // REMOVE LATER!!!
+    setDraggingTaskID: (state, action: PayloadAction<string | null>) => {
+      state.draggingTaskID = action.payload;
+    },
+    //
     setSelectedTask: (state, action: PayloadAction<TTask | null>) => {
       state.selectedTask = action.payload;
     },
@@ -48,7 +55,15 @@ export const tasksSlice = createSlice({
 
       state.selectedTask = task;
     },
+    changeTaskColumn: (state, action: PayloadAction<{ taskID: string; column: TColumnType }>) => {
+      const { taskID, column } = action.payload;
+
+      const task = state.list[taskID];
+
+      task.column = column;
+    },
   },
 });
 
-export const { setSelectedTask, addTask, deleteSelectedTask, editSelectedTask } = tasksSlice.actions;
+export const { setDraggingTaskID, setSelectedTask, addTask, deleteSelectedTask, editSelectedTask, changeTaskColumn } =
+  tasksSlice.actions;

@@ -5,6 +5,7 @@ import type { TTaskPriority } from "../../../../../shared/types/types";
 import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
 import { getDateString } from "../../../../../shared/utils/getDateString";
 import { setSelectedTask } from "../../../tasksSlice";
+import { useSortable } from "@dnd-kit/sortable";
 
 interface TaskCardProps {
   taskID: string;
@@ -19,6 +20,11 @@ const priorityStyles: { [key in TTaskPriority]: string } = {
 const TaskCard: FC<TaskCardProps> = ({ taskID }) => {
   const task = useAppSelector((state) => state.tasks.list[taskID]);
 
+  const { attributes, listeners, setNodeRef, isDragging } = useSortable({
+    id: taskID,
+    data: { type: "task", column: task.column },
+  });
+
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
@@ -26,7 +32,13 @@ const TaskCard: FC<TaskCardProps> = ({ taskID }) => {
   };
 
   return (
-    <div className={style.Card} onClick={handleClick}>
+    <div
+      className={isDragging ? [style.Dragging, style.Card].join(" ") : style.Card}
+      onClick={handleClick}
+      {...attributes}
+      {...listeners}
+      ref={setNodeRef}
+    >
       <h4 className={style.Title}>{task.title}</h4>
       <div className={style.Info}>
         <p className={style.Date}>

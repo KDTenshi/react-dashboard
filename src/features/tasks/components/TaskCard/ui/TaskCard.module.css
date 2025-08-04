@@ -13,6 +13,15 @@
   box-shadow: 0 0 15px 0 #adb5bd;
 }
 
+.Dragging {
+  background: #adb5bd;
+  opacity: 0.25;
+  box-shadow: 0 0 15px 0 #adb5bd;
+}
+.Dragging * {
+  opacity: 0;
+}
+
 .Title {
   font-size: 20px;
   font-family: "Space Grotesk", sans-serif;
