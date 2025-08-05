@@ -1,5 +1,5 @@
-@use "../../../shared/style/colors" as c;
-@import "../../../shared/style/mixins";
+@use "../../../../../shared/style/colors" as c;
+@import "../../../../../shared/style/mixins";
 
 .Board {
   background: c.$WHITE;
@@ -21,35 +21,6 @@
   gap: 25px;
 }
 
-.Title {
-  @include HEADING_1();
-
-  color: c.$BLACK;
-}
-
-.Button {
-  padding: 10px;
-  border: 0;
-  outline: 0;
-  background: c.$WHITE;
-  color: c.$BLACK;
-  transition: all 0.25s;
-  border-radius: 10px;
-  cursor: pointer;
-
-  &:hover {
-    background: c.$LIGHT_GRAY;
-  }
-
-  & span {
-    font-size: 30px;
-  }
-}
-
-.Edit {
-  width: 100%;
-}
-
 .Input {
   @include HEADING_1();
 
@@ -58,35 +29,6 @@
   border: 0;
   outline: 0;
   background: c.$WHITE;
-}
-
-.Actions {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 10px;
-}
-
-.Button {
-  @include BODY_1();
-
-  color: c.$DARK_GRAY;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 15px;
-  background: c.$WHITE;
-  border: 0;
-  outline: 0;
-  border-radius: 10px;
-  transition: all 0.25s;
-  cursor: pointer;
-
-  &:hover {
-    background: c.$LIGHT_GRAY;
-    color: c.$BLACK;
-  }
 }
 
 .Columns {

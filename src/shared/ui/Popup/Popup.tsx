@@ -3,14 +3,14 @@ import type { FC, PropsWithChildren } from "react";
 import style from "./Popup.module.css";
 
 interface PopupProps {
-  hide: () => void;
+  hidePopup: () => void;
 }
 
-const Popup: FC<PropsWithChildren<PopupProps>> = ({ children, hide }) => {
+const Popup: FC<PropsWithChildren<PopupProps>> = ({ children, hidePopup }) => {
   const handleWrapperClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
 
-    if (target.classList.contains(style.Wrapper)) hide();
+    if (target.classList.contains(style.Wrapper)) hidePopup();
   };
 
   return (

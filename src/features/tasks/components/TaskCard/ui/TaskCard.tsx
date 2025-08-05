@@ -4,8 +4,8 @@ import style from "./TaskCard.module.css";
 import type { TTaskPriority } from "../../../../../shared/types/types";
 import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
 import { getDateString } from "../../../../../shared/utils/getDateString";
-import { setSelectedTask } from "../../../tasksSlice";
 import { useSortable } from "@dnd-kit/sortable";
+import { showTaskPopup } from "../../../../ui/uiThunks";
 
 interface TaskCardProps {
   taskID: string;
@@ -28,7 +28,7 @@ const TaskCard: FC<TaskCardProps> = ({ taskID }) => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    dispatch(setSelectedTask(task));
+    dispatch(showTaskPopup(taskID));
   };
 
   return (

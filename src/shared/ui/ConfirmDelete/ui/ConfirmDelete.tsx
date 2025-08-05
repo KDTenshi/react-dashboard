@@ -1,6 +1,7 @@
 import type { FC } from "react";
 
 import style from "./ConfirmDelete.module.css";
+import { Button } from "../../";
 
 interface ConfrimDeleteProps {
   handleDelete: () => void;
@@ -19,12 +20,12 @@ const ConfirmDelete: FC<ConfrimDeleteProps> = ({ handleDelete, hidePopup }) => {
       <div className={style.Body}>
         <h3 className={style.Title}>Confirm delete?</h3>
         <div className={style.Buttons}>
-          <button className={style.Cancel} onClick={hidePopup}>
+          <Button onClick={hidePopup} color="light">
             Cancel
-          </button>
-          <button className={style.Confirm} onClick={handleDelete}>
+          </Button>
+          <Button onClick={handleDelete} color="red">
             Confirm
-          </button>
+          </Button>
         </div>
       </div>
     </div>

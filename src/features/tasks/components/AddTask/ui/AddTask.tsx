@@ -10,9 +10,9 @@ const AddTask: FC = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <Popup hide={() => dispatch(setIsAddTaskFormShown(false))}>
+    <Popup hidePopup={() => dispatch(setIsAddTaskFormShown(false))}>
       <h2 className={style.Title}>Add new task</h2>
-      <TaskForm />
+      <TaskForm hideForm={() => dispatch(setIsAddTaskFormShown(false))} />
     </Popup>
   );
 };

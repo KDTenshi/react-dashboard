@@ -10,14 +10,14 @@ import PriorityButton from "./PriorityButton/PriorityButton";
 import ConfirmDelete from "./ConfirmDelete/ui/ConfirmDelete";
 
 export {
-  Logo,
-  Warning,
-  Popup,
+  Button,
+  ConfirmDelete,
   DatePicker,
   InputWithWarning,
-  TextInput,
-  Textarea,
-  Button,
+  Logo,
+  Popup,
   PriorityButton,
-  ConfirmDelete,
+  Textarea,
+  TextInput,
+  Warning,
 };

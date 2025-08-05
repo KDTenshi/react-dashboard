@@ -2,6 +2,7 @@ import type { AppThunk } from "../../app/store/appStore";
 import type { TColumnType, TTaskPriority } from "../../shared/types/types";
 import { createNewTask } from "../../shared/utils/createNewTask";
 import { addTaskToColumn, deleteTaskFromColumn, moveTaskToColumn } from "../board/boardSlice";
+import { setIsTaskPopupShown } from "../ui/uiSlice";
 import { addTask, changeTaskColumn, deleteSelectedTask } from "./tasksSlice";
 
 export const createTask = (title: string, description: string, deadline: number, priority: TTaskPriority): AppThunk => {
@@ -16,12 +17,15 @@ export const createTask = (title: string, description: string, deadline: number,
 export const deleteTask = (): AppThunk => {
   return (dispatch, getState) => {
     const state = getState();
-    const selectedTask = state.tasks.selectedTask;
+    const selectedTaskID = state.tasks.selectedTaskID;
 
-    if (!selectedTask) return;
+    if (!selectedTaskID) return;
+
+    const column = state.tasks.list[selectedTaskID].column;
 
     dispatch(deleteSelectedTask());
-    dispatch(deleteTaskFromColumn({ column: selectedTask.column, taskID: selectedTask.id }));
+    dispatch(deleteTaskFromColumn({ column, taskID: selectedTaskID }));
+    dispatch(setIsTaskPopupShown(false));
   };
 };
 

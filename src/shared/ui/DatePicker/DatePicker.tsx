@@ -81,8 +81,6 @@ const DatePicker: FC<DatePickerProps> = ({ hidePicker, timestamp, setTimestamp }
     setSelectedHours(newHours);
     setSelectedMinutes(newMinutes);
 
-    console.log(selectedYear, selectedMonth, selectedDay, newHours, newMinutes);
-
     const newDate = new Date(selectedYear, selectedMonth, selectedDay, newHours, newMinutes);
 
     setTimestamp(newDate.getTime());

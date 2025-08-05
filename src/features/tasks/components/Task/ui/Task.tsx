@@ -2,18 +2,18 @@ import { useState, type FC } from "react";
 
 import style from "./Task.module.css";
 import { TaskForm } from "../../TaskForm";
-import type { TTask } from "../../../../../shared/types/types";
-import { useAppDispatch } from "../../../../../app/store/appStore";
+import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
 import { Button, ConfirmDelete, Popup } from "../../../../../shared/ui";
-import { setSelectedTask } from "../../../tasksSlice";
 import { deleteTask } from "../../../tasksThunks";
+import { hideTaskPopup } from "../../../../ui/uiThunks";
 
 interface TaskProps {
-  task: TTask;
+  taskID: string;
 }
 
-const Task: FC<TaskProps> = ({ task }) => {
+const Task: FC<TaskProps> = ({ taskID }) => {
   const dispatch = useAppDispatch();
+  const task = useAppSelector((state) => state.tasks.list[taskID]);
 
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -22,14 +22,14 @@ const Task: FC<TaskProps> = ({ task }) => {
   };
 
   return (
-    <Popup hide={() => dispatch(setSelectedTask(null))}>
+    <Popup hidePopup={() => dispatch(hideTaskPopup())}>
       {confirmDelete && <ConfirmDelete handleDelete={handleDelete} hidePopup={() => setConfirmDelete(false)} />}
       <div className={style.Heading}>
         <Button color={"red"} onClick={() => setConfirmDelete(true)}>
           <span className="material-symbols-outlined">delete</span>Delete
         </Button>
       </div>
-      <TaskForm task={task} />
+      <TaskForm task={task} hideForm={() => dispatch(hideTaskPopup())} />
     </Popup>
   );
 };

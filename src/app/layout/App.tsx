@@ -10,8 +10,9 @@ import { Task } from "../../features/tasks/components/Task";
 import { AddTask } from "../../features/tasks/components/AddTask";
 
 const App: FC = () => {
-  const selectedTask = useAppSelector((state) => state.tasks.selectedTask);
-  const isAddFormShown = useAppSelector((state) => state.ui.isAddTaskFormShown);
+  const selectedTaskID = useAppSelector((state) => state.tasks.selectedTaskID);
+  const isAddTaskFormShown = useAppSelector((state) => state.ui.isAddTaskFormShown);
+  const isTaskPopupShown = useAppSelector((state) => state.ui.isTaskPopupShown);
 
   return (
     <div className="App">
@@ -20,8 +21,8 @@ const App: FC = () => {
         <SideBar />
         <Board />
       </div>
-      {selectedTask && <Task task={selectedTask} />}
-      {isAddFormShown && <AddTask />}
+      {selectedTaskID && isTaskPopupShown && <Task taskID={selectedTaskID} />}
+      {isAddTaskFormShown && <AddTask />}
     </div>
   );
 };

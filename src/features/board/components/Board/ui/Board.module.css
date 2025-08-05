@@ -18,34 +18,6 @@
   gap: 25px;
 }
 
-.Title {
-  font-size: 50px;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
-  color: #212529;
-}
-
-.Button {
-  padding: 10px;
-  border: 0;
-  outline: 0;
-  background: #f8f9fa;
-  color: #212529;
-  transition: all 0.25s;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.Button:hover {
-  background: #dee2e6;
-}
-.Button span {
-  font-size: 30px;
-}
-
-.Edit {
-  width: 100%;
-}
-
 .Input {
   font-size: 50px;
   font-family: "Space Grotesk", sans-serif;
@@ -55,35 +27,6 @@
   border: 0;
   outline: 0;
   background: #f8f9fa;
-}
-
-.Actions {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 10px;
-}
-
-.Button {
-  font-size: 20px;
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  color: #495057;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 15px;
-  background: #f8f9fa;
-  border: 0;
-  outline: 0;
-  border-radius: 10px;
-  transition: all 0.25s;
-  cursor: pointer;
-}
-.Button:hover {
-  background: #dee2e6;
-  color: #212529;
 }
 
 .Columns {

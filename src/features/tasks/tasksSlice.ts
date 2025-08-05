@@ -3,27 +3,20 @@ import type { TColumnType, TTask, TTaskPriority } from "../../shared/types/types
 
 type TasksState = {
   list: { [key: string]: TTask };
-  selectedTask: TTask | null;
-  draggingTaskID: string | null;
+  selectedTaskID: string | null;
 };
 
 const initialState: TasksState = {
   list: {},
-  selectedTask: null,
-  draggingTaskID: null,
+  selectedTaskID: null,
 };
 
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    // REMOVE LATER!!!
-    setDraggingTaskID: (state, action: PayloadAction<string | null>) => {
-      state.draggingTaskID = action.payload;
-    },
-    //
-    setSelectedTask: (state, action: PayloadAction<TTask | null>) => {
-      state.selectedTask = action.payload;
+    setSelectedTaskID: (state, action: PayloadAction<string | null>) => {
+      state.selectedTaskID = action.payload;
     },
     addTask: (state, action: PayloadAction<{ task: TTask }>) => {
       const { task } = action.payload;
@@ -31,12 +24,12 @@ export const tasksSlice = createSlice({
       state.list[task.id] = task;
     },
     deleteSelectedTask: (state) => {
-      const selectedTask = state.selectedTask;
+      const selectedTaskID = state.selectedTaskID;
 
-      if (!selectedTask) return;
+      if (!selectedTaskID) return;
 
-      delete state.list[selectedTask.id];
-      state.selectedTask = null;
+      delete state.list[selectedTaskID];
+      state.selectedTaskID = null;
     },
     editSelectedTask: (
       state,
@@ -44,16 +37,14 @@ export const tasksSlice = createSlice({
     ) => {
       const { title, description, deadline, priority } = action.payload;
 
-      if (!state.selectedTask) return;
+      if (!state.selectedTaskID) return;
 
-      const task = state.list[state.selectedTask.id];
+      const task = state.list[state.selectedTaskID];
 
       task.title = title;
       task.description = description;
       task.deadline = deadline;
       task.priority = priority;
-
-      state.selectedTask = task;
     },
     changeTaskColumn: (state, action: PayloadAction<{ taskID: string; column: TColumnType }>) => {
       const { taskID, column } = action.payload;
@@ -65,5 +56,5 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { setDraggingTaskID, setSelectedTask, addTask, deleteSelectedTask, editSelectedTask, changeTaskColumn } =
+export const { setSelectedTaskID, addTask, deleteSelectedTask, editSelectedTask, changeTaskColumn } =
   tasksSlice.actions;

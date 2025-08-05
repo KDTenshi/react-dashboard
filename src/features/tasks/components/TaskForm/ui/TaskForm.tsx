@@ -6,15 +6,15 @@ import { TaskDate } from "../../TaskDate";
 import type { TTask } from "../../../../../shared/types/types";
 import { useAppDispatch } from "../../../../../app/store/appStore";
 import { Button, InputWithWarning, Textarea } from "../../../../../shared/ui";
-import { setIsAddTaskFormShown } from "../../../../ui/uiSlice";
-import { editSelectedTask, setSelectedTask } from "../../../tasksSlice";
+import { editSelectedTask } from "../../../tasksSlice";
 import { createTask } from "../../../tasksThunks";
 
 interface TaskFromProps {
   task?: TTask;
+  hideForm: () => void;
 }
 
-const TaskForm: FC<TaskFromProps> = ({ task }) => {
+const TaskForm: FC<TaskFromProps> = ({ task, hideForm }) => {
   const dispatch = useAppDispatch();
 
   const [title, setTitle] = useState(task ? task.title : "");
@@ -24,12 +24,6 @@ const TaskForm: FC<TaskFromProps> = ({ task }) => {
 
   const [isTitleWarning, setIsTitleWarning] = useState(false);
   const [isDateWarning, setIsDateWarning] = useState(false);
-
-  const hideForm = () => {
-    if (!task) dispatch(setIsAddTaskFormShown(false));
-
-    if (task) dispatch(setSelectedTask(null));
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
