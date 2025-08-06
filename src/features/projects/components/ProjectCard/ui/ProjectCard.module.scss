@@ -1,0 +1,22 @@
+@use "../../../../../shared/style/colors" as c;
+@import "../../../../../shared/style/mixins";
+
+.Card {
+  @include BODY_1();
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  color: c.$DARK_GRAY;
+  text-decoration: none;
+  background: c.$LIGHT_GRAY;
+  padding: 25px 15px;
+  border-radius: 15px;
+  transition: all 0.25s;
+
+  &:hover {
+    background: c.$WHITE;
+    color: c.$BLACK;
+  }
+}

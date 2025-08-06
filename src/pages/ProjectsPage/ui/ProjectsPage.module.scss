@@ -1,0 +1,17 @@
+@use "../../../shared/style/colors" as c;
+@import "../../../shared/style/mixins";
+
+.Page {
+  padding: 50px 75px;
+  background: c.$WHITE;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.Title {
+  @include HEADING_2();
+
+  color: c.$BLACK;
+}

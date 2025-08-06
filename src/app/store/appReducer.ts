@@ -1,10 +1,10 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { boardSlice } from "../../features/board/boardSlice";
 import { tasksSlice } from "../../features/tasks/tasksSlice";
 import { uiSlice } from "../../features/ui/uiSlice";
+import { projectsSlice } from "../../features/projects/projectsSlice";
 
 export const appReducer = combineReducers({
-  [boardSlice.reducerPath]: boardSlice.reducer,
+  [projectsSlice.reducerPath]: projectsSlice.reducer,
   [tasksSlice.reducerPath]: tasksSlice.reducer,
   [uiSlice.reducerPath]: uiSlice.reducer,
 });

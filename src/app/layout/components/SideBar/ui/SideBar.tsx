@@ -2,6 +2,7 @@ import { useEffect, useState, type FC } from "react";
 
 import style from "./SideBar.module.css";
 import { useAppSelector } from "../../../../store/appStore";
+import { NavLink } from "react-router";
 
 const SideBar: FC = () => {
   const status = useAppSelector((state) => state.ui.sideBarStatus);
@@ -16,18 +17,18 @@ const SideBar: FC = () => {
   return (
     <div className={className}>
       <nav className={style.Nav}>
-        <a href="/" className={style.Link}>
+        <NavLink to={"/"} className={style.Link}>
           <span className="material-symbols-outlined">home</span>
           Home
-        </a>
-        <a href="/" className={style.Link}>
+        </NavLink>
+        <NavLink to={"projects"} className={style.Link}>
           <span className="material-symbols-outlined">table</span>
           Projects
-        </a>
-        <a href="/" className={style.Link}>
+        </NavLink>
+        <NavLink to={"settings"} className={style.Link}>
           <span className="material-symbols-outlined">settings</span>
           Settings
-        </a>
+        </NavLink>
       </nav>
       <div className={style.Future}>Here will be more in the future</div>
     </div>

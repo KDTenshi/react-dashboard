@@ -1,0 +1,36 @@
+@use "../../../../../shared/style/colors" as c;
+@import "../../../../../shared/style/mixins";
+
+.Projects {
+  width: 100%;
+  background: c.$LIGHT_GRAY;
+  padding: 25px 50px;
+  border-radius: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.Button {
+  @include BODY_1();
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  color: c.$DARK_GRAY;
+  text-decoration: none;
+  background: c.$LIGHT_GRAY;
+  padding: 25px 15px;
+  border-radius: 15px;
+  transition: all 0.25s;
+
+  &:hover {
+    background: c.$WHITE;
+    color: c.$BLACK;
+  }
+  border: 0;
+  outline: 0;
+  text-align: left;
+  cursor: pointer;
+}

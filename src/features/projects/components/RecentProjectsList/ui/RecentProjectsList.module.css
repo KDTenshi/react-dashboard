@@ -1,0 +1,29 @@
+.Projects {
+  width: 100%;
+  background: #dee2e6;
+  padding: 25px 50px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.Title {
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #212529;
+}
+
+.Empty {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  color: #495057;
+}
+
+.Container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}/*# sourceMappingURL=RecentProjectsList.module.css.map */

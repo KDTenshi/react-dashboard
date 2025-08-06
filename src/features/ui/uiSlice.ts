@@ -1,12 +1,14 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 type UIState = {
+  isAddProjectFormShown: boolean;
   isAddTaskFormShown: boolean;
   isTaskPopupShown: boolean;
   sideBarStatus: "shown" | "hidden" | null;
 };
 
 const initialState: UIState = {
+  isAddProjectFormShown: false,
   isAddTaskFormShown: false,
   isTaskPopupShown: false,
   sideBarStatus: null,
@@ -16,6 +18,9 @@ export const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
+    setIsAddProjectFormShown: (state, action: PayloadAction<boolean>) => {
+      state.isAddProjectFormShown = action.payload;
+    },
     setIsAddTaskFormShown: (state, action: PayloadAction<boolean>) => {
       state.isAddTaskFormShown = action.payload;
     },
@@ -35,4 +40,5 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { setIsAddTaskFormShown, setIsTaskPopupShown, switchSideBarStatus } = uiSlice.actions;
+export const { setIsAddProjectFormShown, setIsAddTaskFormShown, setIsTaskPopupShown, switchSideBarStatus } =
+  uiSlice.actions;

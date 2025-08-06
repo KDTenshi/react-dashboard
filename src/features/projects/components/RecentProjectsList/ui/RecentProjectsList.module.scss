@@ -1,0 +1,30 @@
+@use "../../../../../shared/style/colors" as c;
+@import "../../../../../shared/style/mixins";
+
+.Projects {
+  width: 100%;
+  background: c.$LIGHT_GRAY;
+  padding: 25px 50px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.Title {
+  @include HEADING_4();
+
+  color: c.$BLACK;
+}
+
+.Empty {
+  @include BODY_2();
+
+  color: c.$DARK_GRAY;
+}
+
+.Container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}

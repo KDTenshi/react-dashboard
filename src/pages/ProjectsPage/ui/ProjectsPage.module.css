@@ -1,0 +1,15 @@
+.Page {
+  padding: 50px 75px;
+  background: #f8f9fa;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.Title {
+  font-size: 35px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: #212529;
+}/*# sourceMappingURL=ProjectsPage.module.css.map */

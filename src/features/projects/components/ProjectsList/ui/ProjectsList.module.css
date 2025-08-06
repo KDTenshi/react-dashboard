@@ -1,0 +1,33 @@
+.Projects {
+  width: 100%;
+  background: #dee2e6;
+  padding: 25px 50px;
+  border-radius: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.Button {
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  color: #495057;
+  text-decoration: none;
+  background: #dee2e6;
+  padding: 25px 15px;
+  border-radius: 15px;
+  transition: all 0.25s;
+  border: 0;
+  outline: 0;
+  text-align: left;
+  cursor: pointer;
+}
+.Button:hover {
+  background: #f8f9fa;
+  color: #212529;
+}/*# sourceMappingURL=ProjectsList.module.css.map */
