@@ -6,8 +6,8 @@ import { TaskDate } from "../../TaskDate";
 import type { TTask } from "../../../../../shared/types/types";
 import { useAppDispatch } from "../../../../../app/store/appStore";
 import { Button, InputWithWarning, Textarea } from "../../../../../shared/ui";
-import { editSelectedTask } from "../../../tasksSlice";
-import { createTask } from "../../../tasksThunks";
+import { addTaskThunk } from "../../../../../services/thunks/tasks";
+import { useEditTaskMutation } from "../../../tasksApi";
 
 interface TaskFromProps {
   task?: TTask;
@@ -24,6 +24,8 @@ const TaskForm: FC<TaskFromProps> = ({ task, hideForm }) => {
 
   const [isTitleWarning, setIsTitleWarning] = useState(false);
   const [isDateWarning, setIsDateWarning] = useState(false);
+
+  const [editTask] = useEditTaskMutation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,13 +45,14 @@ const TaskForm: FC<TaskFromProps> = ({ task, hideForm }) => {
     }
 
     if (newTitle && !task) {
-      dispatch(createTask(title, description, deadline, priority));
+      dispatch(addTaskThunk({ title, description, deadline, priority }));
+
       hideForm();
       return;
     }
 
     if (newTitle && task) {
-      dispatch(editSelectedTask({ title, description, deadline, priority }));
+      editTask({ task, title, description, deadline, priority });
       hideForm();
       return;
     }

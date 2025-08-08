@@ -1,0 +1,23 @@
+{
+  "projects": [
+    {
+      "id": "OmPbigXSpUuoHUHRz0xIC",
+      "title": "asd",
+      "columns": {
+        "todo": {
+          "title": "todo",
+          "taskIDs": []
+        },
+        "inProgress": {
+          "title": "inProgress",
+          "taskIDs": []
+        },
+        "done": {
+          "title": "done",
+          "taskIDs": []
+        }
+      }
+    }
+  ],
+  "tasks": []
+}

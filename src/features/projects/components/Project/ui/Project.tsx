@@ -1,23 +1,31 @@
-import { useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 
 import style from "./Project.module.css";
-import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
+import { useAppDispatch } from "../../../../../app/store/appStore";
 import { editProjectTitle } from "../../../projectsSlice";
 import { DndWrapper } from "../../DndWrapper";
 import { Column } from "../../Column";
 import { ActionsBar } from "../../ActionsBar";
+import { useGetProjectByIDQuery } from "../../../projectsApi";
 
 interface ProjectProps {
   projectID: string;
 }
 
 const Project: FC<ProjectProps> = ({ projectID }) => {
-  const project = useAppSelector((state) => state.projects.list[projectID]);
-  const columns = Object.values(project.columns);
+  const { data: project } = useGetProjectByIDQuery(projectID);
 
   const dispatch = useAppDispatch();
 
-  const [editTitleValue, setEditTitleValue] = useState(project.title);
+  const [editTitleValue, setEditTitleValue] = useState("");
+
+  useEffect(() => {
+    if (project) setEditTitleValue(project.title);
+  }, [project]);
+
+  if (!project) return;
+
+  const columns = Object.values(project.columns);
 
   const handleEditTitle = () => {
     const title = editTitleValue.trim();

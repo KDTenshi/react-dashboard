@@ -2,10 +2,11 @@ import { useState, type FC } from "react";
 
 import style from "./Task.module.css";
 import { TaskForm } from "../../TaskForm";
-import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
+import { useAppDispatch } from "../../../../../app/store/appStore";
 import { Button, ConfirmDelete, Popup } from "../../../../../shared/ui";
-import { deleteTask } from "../../../tasksThunks";
 import { hideTaskPopup } from "../../../../ui/uiThunks";
+import { useGetTaskByIDQuery } from "../../../tasksApi";
+import { deleteTaskThunk } from "../../../../../services/thunks/tasks";
 
 interface TaskProps {
   taskID: string;
@@ -13,12 +14,15 @@ interface TaskProps {
 
 const Task: FC<TaskProps> = ({ taskID }) => {
   const dispatch = useAppDispatch();
-  const task = useAppSelector((state) => state.tasks.list[taskID]);
+  const { data: task } = useGetTaskByIDQuery(taskID);
 
   const [confirmDelete, setConfirmDelete] = useState(false);
 
+  if (!task) return;
+
   const handleDelete = () => {
-    dispatch(deleteTask());
+    dispatch(deleteTaskThunk(task));
+    dispatch(hideTaskPopup());
   };
 
   return (

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStor
 import { setIsAddTaskFormShown } from "../../../../ui/uiSlice";
 import { Button, ConfirmDelete } from "../../../../../shared/ui";
 import { useNavigate } from "react-router";
-import { deleteProject } from "../../../projectsSlice";
+import { useDeleteProjectMutation } from "../../../projectsApi";
 
 const ActionsBar: FC = () => {
   const dispatch = useAppDispatch();
@@ -15,14 +15,13 @@ const ActionsBar: FC = () => {
 
   const [isDeleteShown, setIsDeleteShown] = useState(false);
 
+  const [deleteProject] = useDeleteProjectMutation();
+
   const handleDelete = async () => {
     if (!activeProjectID) return;
 
-    navigate("/", { replace: true });
-
-    setTimeout(() => {
-      dispatch(deleteProject({ projectID: activeProjectID }));
-    }, 1);
+    navigate("/projects", { replace: true });
+    deleteProject(activeProjectID);
   };
 
   return (

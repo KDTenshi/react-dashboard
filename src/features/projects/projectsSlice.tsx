@@ -27,7 +27,7 @@ export const projectsSlice = createSlice({
     addRecentProject: (state, action: PayloadAction<{ projectID: string }>) => {
       const { projectID } = action.payload;
 
-      const projectTitle = state.list[projectID].title;
+      const projectTitle = "SAMPLE TITLE";
 
       const projectIndex = state.recentProjects.findIndex((project) => project.id === projectID);
 

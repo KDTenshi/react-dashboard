@@ -4,10 +4,13 @@ import style from "./AddProject.module.css";
 import { useAppDispatch } from "../../../../../app/store/appStore";
 import { setIsAddProjectFormShown } from "../../../../ui/uiSlice";
 import { Button, InputWithWarning } from "../../../../../shared/ui";
-import { addProject } from "../../../projectsSlice";
+import { useAddProjectMutation } from "../../../projectsApi";
+import { createNewProject } from "../../../../../shared/utils/createNewProject";
 
 const AddProject: FC = () => {
   const dispatch = useAppDispatch();
+
+  const [addProject] = useAddProjectMutation();
 
   const [titleValue, setTitleValue] = useState("");
   const [isTitleWarning, setIsTitleWarning] = useState(false);
@@ -31,7 +34,9 @@ const AddProject: FC = () => {
     }
 
     if (title) {
-      dispatch(addProject({ title }));
+      const project = createNewProject(title);
+
+      addProject(project);
       dispatch(setIsAddProjectFormShown(false));
     }
   };

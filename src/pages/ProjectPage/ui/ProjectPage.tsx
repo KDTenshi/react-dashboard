@@ -13,7 +13,7 @@ const ProjectPage: FC = () => {
   useEffect(() => {
     if (projectID) {
       dispatch(setActiveProjectID(projectID));
-      dispatch(addRecentProject({ projectID }));
+      // dispatch(addRecentProject({ projectID }));
     }
 
     return () => {

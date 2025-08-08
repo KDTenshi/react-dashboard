@@ -3,6 +3,7 @@ export type TTaskPriority = "high" | "moderate" | "low";
 
 export type TTask = {
   id: string;
+  projectID: string;
   title: string;
   description: string;
   date: number;
