@@ -1,46 +1,59 @@
-import { useEffect, useState, type FC } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 
 import style from "./Project.module.css";
-import { useAppDispatch } from "../../../../../app/store/appStore";
-import { editProjectTitle } from "../../../projectsSlice";
+import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
 import { DndWrapper } from "../../DndWrapper";
 import { Column } from "../../Column";
 import { ActionsBar } from "../../ActionsBar";
-import { useGetProjectByIDQuery } from "../../../projectsApi";
+import { Loader } from "../../../../../shared/ui";
+import type { TColumnType } from "../../../../../shared/types/types";
+import { editLocalProjectTitle } from "../../../projectsSlice";
+import { clearLocalProjectThunk } from "../../../../../services/thunks/projects";
+import { AddTask } from "../../../../tasks/components/AddTask";
 
-interface ProjectProps {
-  projectID: string;
-}
-
-const Project: FC<ProjectProps> = ({ projectID }) => {
-  const { data: project } = useGetProjectByIDQuery(projectID);
-
+const Project: FC = () => {
   const dispatch = useAppDispatch();
+
+  const localProject = useAppSelector((state) => state.projectsSlice.localProject);
+
+  const isAddTaskFormShown = useAppSelector((state) => state.ui.isAddTaskFormShown);
 
   const [editTitleValue, setEditTitleValue] = useState("");
 
   useEffect(() => {
-    if (project) setEditTitleValue(project.title);
-  }, [project]);
+    if (localProject) setEditTitleValue(localProject.title);
+  }, [localProject]);
 
-  if (!project) return;
+  const isFirstRender = useRef(true);
 
-  const columns = Object.values(project.columns);
-
-  const handleEditTitle = () => {
-    const title = editTitleValue.trim();
-
-    if (!title) {
-      setEditTitleValue(project.title);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
     }
 
+    return () => {
+      dispatch(clearLocalProjectThunk());
+    };
+  }, [dispatch]);
+
+  if (!localProject) return <Loader />;
+
+  const columns = Object.entries(localProject.columns);
+
+  const handleTitleEdit = () => {
+    const title = editTitleValue.trim();
+
+    if (!title) setEditTitleValue(localProject.title);
+
     if (title) {
-      dispatch(editProjectTitle({ projectID, title }));
+      dispatch(editLocalProjectTitle({ title }));
     }
   };
 
   return (
     <div className={style.Project}>
+      {isAddTaskFormShown && <AddTask />}
       <div className={style.Heading}>
         <input
           type="text"
@@ -48,14 +61,14 @@ const Project: FC<ProjectProps> = ({ projectID }) => {
           placeholder="Project title..."
           value={editTitleValue}
           onChange={(e) => setEditTitleValue(e.target.value)}
-          onBlur={handleEditTitle}
+          onBlur={handleTitleEdit}
         />
       </div>
       <ActionsBar />
       <DndWrapper>
         <div className={style.Columns}>
-          {columns.map((column) => (
-            <Column column={column} key={column.title} />
+          {columns.map(([title, taskIDs]) => (
+            <Column title={title as TColumnType} taskIDs={taskIDs} key={title} />
           ))}
         </div>
       </DndWrapper>

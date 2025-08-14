@@ -8,7 +8,6 @@ import { useGetProjectsQuery } from "../../../projectsApi";
 
 const ProjectsList: FC = () => {
   const dispatch = useAppDispatch();
-
   const { data: projects, isLoading } = useGetProjectsQuery();
 
   return (

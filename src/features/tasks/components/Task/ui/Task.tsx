@@ -5,8 +5,6 @@ import { TaskForm } from "../../TaskForm";
 import { useAppDispatch } from "../../../../../app/store/appStore";
 import { Button, ConfirmDelete, Popup } from "../../../../../shared/ui";
 import { hideTaskPopup } from "../../../../ui/uiThunks";
-import { useGetTaskByIDQuery } from "../../../tasksApi";
-import { deleteTaskThunk } from "../../../../../services/thunks/tasks";
 
 interface TaskProps {
   taskID: string;
@@ -14,14 +12,10 @@ interface TaskProps {
 
 const Task: FC<TaskProps> = ({ taskID }) => {
   const dispatch = useAppDispatch();
-  const { data: task } = useGetTaskByIDQuery(taskID);
 
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  if (!task) return;
-
   const handleDelete = () => {
-    dispatch(deleteTaskThunk(task));
     dispatch(hideTaskPopup());
   };
 
@@ -33,7 +27,7 @@ const Task: FC<TaskProps> = ({ taskID }) => {
           <span className="material-symbols-outlined">delete</span>Delete
         </Button>
       </div>
-      <TaskForm task={task} hideForm={() => dispatch(hideTaskPopup())} />
+      {/* <TaskForm task={task} hideForm={() => dispatch(hideTaskPopup())} /> */}
     </Popup>
   );
 };

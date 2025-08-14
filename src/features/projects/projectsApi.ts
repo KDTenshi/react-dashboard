@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { TColumnType, TProject } from "../../shared/types/types";
+import type { TProject } from "../../shared/types/types";
 
 export const projectsApi = createApi({
   reducerPath: "projectsApi",
@@ -29,38 +29,11 @@ export const projectsApi = createApi({
       }),
       invalidatesTags: ["Projects"],
     }),
-    addTaskIDToProject: builder.mutation<void, { project: TProject; taskID: string }>({
-      query: ({ project, taskID }) => ({
+    updateProject: builder.mutation<void, TProject>({
+      query: (project) => ({
         url: `/${project.id}`,
         method: "PUT",
-        body: {
-          ...project,
-          columns: {
-            ...project.columns,
-            todo: {
-              ...project.columns.todo,
-              taskIDs: [taskID, ...project.columns.todo.taskIDs],
-            },
-          },
-        },
-      }),
-      invalidatesTags: ["Projects"],
-    }),
-
-    deleteTaskFromProject: builder.mutation<void, { project: TProject; taskID: string; column: TColumnType }>({
-      query: ({ project, taskID, column }) => ({
-        url: `/${project.id}`,
-        method: "PUT",
-        body: {
-          ...project,
-          columns: {
-            ...project.columns,
-            [column]: {
-              ...project.columns[column],
-              taskIDs: project.columns.todo.taskIDs.filter((id) => id !== taskID),
-            },
-          },
-        },
+        body: project,
       }),
       invalidatesTags: ["Projects"],
     }),
@@ -72,6 +45,5 @@ export const {
   useGetProjectByIDQuery,
   useAddProjectMutation,
   useDeleteProjectMutation,
-  useAddTaskIDToProjectMutation,
-  useDeleteTaskFromProjectMutation,
+  useUpdateProjectMutation,
 } = projectsApi;

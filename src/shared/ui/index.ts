@@ -8,12 +8,14 @@ import Textarea from "./Textarea/Textarea";
 import Button from "./Button/Button";
 import PriorityButton from "./PriorityButton/PriorityButton";
 import ConfirmDelete from "./ConfirmDelete/ui/ConfirmDelete";
+import Loader from "./Loader/Loader";
 
 export {
   Button,
   ConfirmDelete,
   DatePicker,
   InputWithWarning,
+  Loader,
   Logo,
   Popup,
   PriorityButton,

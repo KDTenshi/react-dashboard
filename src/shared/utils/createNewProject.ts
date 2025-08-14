@@ -8,18 +8,9 @@ export const createNewProject = (title: string) => {
     id: projectID,
     title,
     columns: {
-      todo: {
-        title: "todo",
-        taskIDs: [],
-      },
-      inProgress: {
-        title: "inProgress",
-        taskIDs: [],
-      },
-      done: {
-        title: "done",
-        taskIDs: [],
-      },
+      todo: [],
+      inProgress: [],
+      done: [],
     },
   };
 

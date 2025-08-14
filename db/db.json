@@ -1,21 +1,21 @@
 {
   "projects": [
     {
-      "id": "OmPbigXSpUuoHUHRz0xIC",
-      "title": "asd",
+      "id": "123321123",
+      "title": "Project 1",
       "columns": {
-        "todo": {
-          "title": "todo",
-          "taskIDs": []
-        },
-        "inProgress": {
-          "title": "inProgress",
-          "taskIDs": []
-        },
-        "done": {
-          "title": "done",
-          "taskIDs": []
-        }
+        "todo": [],
+        "inProgress": [],
+        "done": []
+      }
+    },
+    {
+      "id": "456654456",
+      "title": "Project 2",
+      "columns": {
+        "todo": [],
+        "inProgress": [],
+        "done": []
       }
     }
   ],

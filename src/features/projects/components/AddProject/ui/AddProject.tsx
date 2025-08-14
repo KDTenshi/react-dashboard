@@ -4,8 +4,8 @@ import style from "./AddProject.module.css";
 import { useAppDispatch } from "../../../../../app/store/appStore";
 import { setIsAddProjectFormShown } from "../../../../ui/uiSlice";
 import { Button, InputWithWarning } from "../../../../../shared/ui";
-import { useAddProjectMutation } from "../../../projectsApi";
 import { createNewProject } from "../../../../../shared/utils/createNewProject";
+import { useAddProjectMutation } from "../../../projectsApi";
 
 const AddProject: FC = () => {
   const dispatch = useAppDispatch();

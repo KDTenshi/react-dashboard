@@ -2,11 +2,10 @@ import { type FC } from "react";
 
 import style from "./TaskCard.module.css";
 import type { TTaskPriority } from "../../../../../shared/types/types";
-import { useAppDispatch } from "../../../../../app/store/appStore";
+import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
 import { getDateString } from "../../../../../shared/utils/getDateString";
 import { useSortable } from "@dnd-kit/sortable";
 import { showTaskPopup } from "../../../../ui/uiThunks";
-import { useGetTaskByIDQuery } from "../../../tasksApi";
 
 interface TaskCardProps {
   taskID: string;
@@ -19,11 +18,11 @@ const priorityStyles: { [key in TTaskPriority]: string } = {
 };
 
 const TaskCard: FC<TaskCardProps> = ({ taskID }) => {
-  const { data: task } = useGetTaskByIDQuery(taskID);
+  const task = useAppSelector((state) => state.tasksSlice.localProjectTasks[taskID]);
 
   const { attributes, listeners, setNodeRef, isDragging } = useSortable({
     id: taskID,
-    data: { type: "task", column: task ? task.column : undefined },
+    data: { type: "task", column: task.column },
   });
 
   const dispatch = useAppDispatch();
@@ -31,8 +30,6 @@ const TaskCard: FC<TaskCardProps> = ({ taskID }) => {
   const handleClick = () => {
     dispatch(showTaskPopup(taskID));
   };
-
-  if (!task) return;
 
   return (
     <div

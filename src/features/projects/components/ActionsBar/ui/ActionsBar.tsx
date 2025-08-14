@@ -11,17 +11,17 @@ const ActionsBar: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const activeProjectID = useAppSelector((state) => state.projects.activeProjectID);
+  const localProject = useAppSelector((state) => state.projectsSlice.localProject);
 
   const [isDeleteShown, setIsDeleteShown] = useState(false);
 
   const [deleteProject] = useDeleteProjectMutation();
 
   const handleDelete = async () => {
-    if (!activeProjectID) return;
+    if (!localProject) return;
 
     navigate("/projects", { replace: true });
-    deleteProject(activeProjectID);
+    deleteProject(localProject.id);
   };
 
   return (

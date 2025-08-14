@@ -1,12 +1,13 @@
 import { type FC } from "react";
 
 import style from "./Column.module.css";
-import type { TColumn, TColumnType } from "../../../../../shared/types/types";
+import type { TColumnType } from "../../../../../shared/types/types";
 import { TaskCard } from "../../../../tasks/components/TaskCard";
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 
 interface ColumnProps {
-  column: TColumn;
+  title: TColumnType;
+  taskIDs: string[];
 }
 
 type TColumnData = { [key in TColumnType]: string };
@@ -23,19 +24,19 @@ const columnTitles: TColumnData = {
   done: "Done",
 };
 
-const Column: FC<ColumnProps> = ({ column }) => {
-  const { setNodeRef } = useSortable({ id: column.title, data: { type: "column" } });
+const Column: FC<ColumnProps> = ({ title, taskIDs }) => {
+  const { setNodeRef } = useSortable({ id: title, data: { type: "column" } });
 
   return (
     <div className={style.Column}>
-      <h4 className={columnTitleStyles[column.title]}>
+      <h4 className={columnTitleStyles[title]}>
         <span className={style.Dot}></span>
-        {columnTitles[column.title]}
+        {columnTitles[title]}
       </h4>
       <div className={style.List} ref={setNodeRef}>
-        {column.taskIDs.length === 0 && <p className={style.Empty}>No tasks here</p>}
-        <SortableContext items={column.taskIDs} strategy={verticalListSortingStrategy}>
-          {column.taskIDs.map((id) => (
+        {taskIDs.length === 0 && <p className={style.Empty}>No tasks here</p>}
+        <SortableContext items={taskIDs} strategy={verticalListSortingStrategy}>
+          {taskIDs.map((id) => (
             <TaskCard key={id} taskID={id} />
           ))}
         </SortableContext>

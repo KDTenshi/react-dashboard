@@ -32,8 +32,6 @@
 
 .Todo {
   @include Title(c.$LIGHT_RED);
-
-  position: relative;
 }
 
 .Progress {

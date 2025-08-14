@@ -12,15 +12,10 @@ export type TTask = {
   priority: TTaskPriority;
 };
 
-export type TColumn = {
-  title: TColumnType;
-  taskIDs: string[];
-};
-
 export type TProject = {
   id: string;
   title: string;
-  columns: { [key in TColumnType]: TColumn };
+  columns: { [key in TColumnType]: string[] };
 };
 
 export type TRecentProject = {
