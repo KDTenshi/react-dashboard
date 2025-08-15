@@ -7,6 +7,7 @@ import type { TTask } from "../../../../../shared/types/types";
 import { useAppDispatch } from "../../../../../app/store/appStore";
 import { Button, InputWithWarning, Textarea } from "../../../../../shared/ui";
 import { addTaskThunk } from "../../../../../services/thunks/tasks";
+import { editSelectedTask } from "../../../tasksSlice";
 
 interface TaskFromProps {
   task?: TTask;
@@ -48,6 +49,7 @@ const TaskForm: FC<TaskFromProps> = ({ task, hideForm }) => {
     }
 
     if (newTitle && task) {
+      dispatch(editSelectedTask({ title: newTitle, description, deadline, priority }));
       hideForm();
       return;
     }

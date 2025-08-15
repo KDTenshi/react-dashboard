@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { TProject } from "../../shared/types/types";
+import type { TColumnType, TProject } from "../../shared/types/types";
 
 type ProjectsState = {
   localProject: TProject | null;
@@ -33,8 +33,20 @@ export const projectsSlice = createSlice({
 
       state.localProject.columns.todo = [taskID, ...state.localProject.columns.todo];
     },
+    deleteTaskIDFromLocalProject: (state, action: PayloadAction<{ column: TColumnType; taskID: string }>) => {
+      const { column, taskID } = action.payload;
+
+      if (!state.localProject) return;
+
+      state.localProject.columns[column] = state.localProject.columns[column].filter((id) => id !== taskID);
+    },
   },
 });
 
-export const { setLocalProject, clearLocalProject, editLocalProjectTitle, addTaskIDToLocalProject } =
-  projectsSlice.actions;
+export const {
+  setLocalProject,
+  clearLocalProject,
+  editLocalProjectTitle,
+  addTaskIDToLocalProject,
+  deleteTaskIDFromLocalProject,
+} = projectsSlice.actions;

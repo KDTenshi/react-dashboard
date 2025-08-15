@@ -10,6 +10,7 @@ import type { TColumnType } from "../../../../../shared/types/types";
 import { editLocalProjectTitle } from "../../../projectsSlice";
 import { clearLocalProjectThunk } from "../../../../../services/thunks/projects";
 import { AddTask } from "../../../../tasks/components/AddTask";
+import { Task } from "../../../../tasks/components/Task";
 
 const Project: FC = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,8 @@ const Project: FC = () => {
   const localProject = useAppSelector((state) => state.projectsSlice.localProject);
 
   const isAddTaskFormShown = useAppSelector((state) => state.ui.isAddTaskFormShown);
+  const isTaskPopupShown = useAppSelector((state) => state.ui.isTaskPopupShown);
+  const selectedTaskID = useAppSelector((state) => state.tasksSlice.selectedTaskID);
 
   const [editTitleValue, setEditTitleValue] = useState("");
 
@@ -53,6 +56,7 @@ const Project: FC = () => {
 
   return (
     <div className={style.Project}>
+      {isTaskPopupShown && selectedTaskID && <Task taskID={selectedTaskID} />}
       {isAddTaskFormShown && <AddTask />}
       <div className={style.Heading}>
         <input
