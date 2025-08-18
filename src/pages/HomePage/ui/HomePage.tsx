@@ -8,6 +8,10 @@ const HomePage: FC = () => {
   const [date, setDate] = useState(getDateString(Date.now(), "long"));
 
   useEffect(() => {
+    document.title = "Home | Project Dashboard App";
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setDate(getDateString(Date.now(), "long"));
     }, 15 * 1000);
