@@ -28,12 +28,12 @@ const Column: FC<ColumnProps> = ({ title, taskIDs }) => {
   const { setNodeRef } = useSortable({ id: title, data: { type: "column" } });
 
   return (
-    <div className={style.Column}>
+    <div className={style.Column} ref={setNodeRef}>
       <h4 className={columnTitleStyles[title]}>
         <span className={style.Dot}></span>
         {columnTitles[title]}
       </h4>
-      <div className={style.List} ref={setNodeRef}>
+      <div className={style.List}>
         {taskIDs.length === 0 && <p className={style.Empty}>No tasks here</p>}
         <SortableContext items={taskIDs} strategy={verticalListSortingStrategy}>
           {taskIDs.map((id) => (

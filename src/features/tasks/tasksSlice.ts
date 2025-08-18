@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { TTask, TTaskPriority } from "../../shared/types/types";
+import type { TColumnType, TTask, TTaskPriority } from "../../shared/types/types";
 
 type TasksState = {
   localProjectTasks: { [key: string]: TTask };
@@ -61,6 +61,13 @@ export const tasksSlice = createSlice({
 
       delete state.localProjectTasks[state.selectedTaskID];
     },
+    changeSelectedTaskColumn: (state, action: PayloadAction<{ column: TColumnType }>) => {
+      const { column } = action.payload;
+
+      if (!state.selectedTaskID) return;
+
+      state.localProjectTasks[state.selectedTaskID].column = column;
+    },
   },
 });
 
@@ -72,4 +79,5 @@ export const {
   addTask,
   editSelectedTask,
   deleteSelectedTask,
+  changeSelectedTaskColumn,
 } = tasksSlice.actions;

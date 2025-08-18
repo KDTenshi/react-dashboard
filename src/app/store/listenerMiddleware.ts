@@ -20,8 +20,6 @@ startListening({
     const state = listenerApi.getState();
     const project = state.projectsSlice.localProject;
 
-    console.log("asd");
-
     if (!project) return;
 
     listenerApi.dispatch(projectsApi.endpoints.updateProject.initiate(project));

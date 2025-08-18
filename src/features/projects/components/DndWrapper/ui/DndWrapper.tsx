@@ -12,14 +12,14 @@ import {
 import type { FC, PropsWithChildren } from "react";
 import { TaskCard } from "../../../../tasks/components/TaskCard";
 import { useAppDispatch, useAppSelector } from "../../../../../app/store/appStore";
-// import { moveLocalTaskThunk, updateServerDataThunk } from "../../../../../services/thunks/tasks";
 import type { TColumnType } from "../../../../../shared/types/types";
-// import { changeLocalTaskPosition } from "../../../projectsSlice";
+import { clearSelectedTaskID, setSelectedTaskID } from "../../../../tasks/tasksSlice";
+import { moveTaskToColumnThunk, updateServerDataThunk } from "../../../../../services/thunks/tasks";
+import { moveTaskInLocalColumn } from "../../../projectsSlice";
 
 const DndWrapper: FC<PropsWithChildren> = ({ children }) => {
   const dispatch = useAppDispatch();
-
-  // const selectedTaskID = useAppSelector((state) => state.tasks.selectedTaskID);
+  const selectedTaskID = useAppSelector((state) => state.tasksSlice.selectedTaskID);
 
   const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 10 } });
 
@@ -28,7 +28,7 @@ const DndWrapper: FC<PropsWithChildren> = ({ children }) => {
   const handleDragStart = (e: DragStartEvent) => {
     const taskID = e.active.id as string;
 
-    // dispatch(setSelectedTaskID(taskID));
+    dispatch(setSelectedTaskID(taskID));
   };
 
   const handleDragOver = (e: DragOverEvent) => {
@@ -37,36 +37,41 @@ const DndWrapper: FC<PropsWithChildren> = ({ children }) => {
     if (!over) return;
 
     const activeID = active.id as string;
-    const overID = over.id;
-
-    if (activeID === overID) return;
 
     const activeData = active.data.current;
     const overData = over.data.current;
 
     if (!activeData || !overData) return;
 
-    const overType = overData.type;
+    if (overData.type === "task") {
+      const overID = over.id as string;
 
-    if (overType === "column") {
-      // dispatch(moveLocalTaskThunk({ taskID: activeID, columnTo: overID as TColumnType }));
+      if (activeID === overID) return;
+
+      const activeColumn = activeData.column;
+      const overColumn = overData.column;
+
+      if (activeColumn === overColumn) {
+        dispatch(moveTaskInLocalColumn({ column: activeColumn, activeID, overID }));
+      } else {
+        dispatch(moveTaskToColumnThunk({ taskID: activeID, columnTo: overColumn }));
+      }
     }
 
-    if (overType === "task" && activeData.column === overData.column) {
-      const column = activeData.column;
+    if (overData.type === "column") {
+      const overID = over.id as TColumnType;
 
-      // dispatch(changeLocalTaskPosition({ activeID, overID: overID as string, column }));
-    }
-
-    if (overType === "task" && activeData.column !== overData.column) {
-      // dispatch(moveLocalTaskThunk({ taskID: activeID, columnTo: overData.column }));
+      dispatch(moveTaskToColumnThunk({ taskID: activeID, columnTo: overID }));
     }
   };
 
   const handleDragEnd = (e: DragEndEvent) => {
     const { active } = e;
 
-    // dispatch(updateServerDataThunk(active.id as string));
+    const activeID = active.id as string;
+
+    dispatch(clearSelectedTaskID());
+    dispatch(updateServerDataThunk({ taskID: activeID }));
   };
 
   return (
@@ -78,7 +83,7 @@ const DndWrapper: FC<PropsWithChildren> = ({ children }) => {
       sensors={sensors}
     >
       {children}
-      {/* <DragOverlay>{selectedTaskID && <TaskCard taskID={selectedTaskID} />}</DragOverlay> */}
+      <DragOverlay>{selectedTaskID && <TaskCard taskID={selectedTaskID} />}</DragOverlay>
     </DndContext>
   );
 };
